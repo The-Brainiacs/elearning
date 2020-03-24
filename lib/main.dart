@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+
+void main() => runApp(
+  MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Settings',
+      theme: ThemeData(
+        primaryColor: Color(0xff5c001e),
+        fontFamily: 'Arial',
+      ),
+    home: MyApp(),
+)
+);
 
 class MyApp extends StatefulWidget {
   @override
@@ -10,46 +21,37 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Settings',
-      theme: ThemeData(
-        primaryColor:  Color(0xff5c001e),    
-        fontFamily: 'Arial',
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Settings'),
-              )
-            ],
-          ),
-        ),
+    return DefaultTabController(
+      length: 1,
+      initialIndex: 0,
+      child: Scaffold(
+        appBar: buildAppBar(),
         body: Center(child: BodyLayout()),
-        bottomNavigationBar: buildBottomAppBar(),
+        bottomNavigationBar: TabBar(
+          indicatorColor: Color(0xffffff),
+          tabs: [
+            Tab(text: 'Logout',icon: Icon(Icons.arrow_downward))
+          ], labelColor: Color(0xff5c001e),
+          ),
       ),
     );
   }
 
-  BottomAppBar buildBottomAppBar() {
-    return BottomAppBar(
-        color: Color(0xff5c001e),
-        child: Row(
+  AppBar buildAppBar() {
+    return AppBar(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               padding: const EdgeInsets.all(8.0),
-              child: Text('Logout'),
-
+              child: Text('Settings'),
             )
           ],
         ),
       );
   }
+
+  
 }
 
 class BodyLayout extends StatefulWidget {
@@ -80,7 +82,7 @@ Widget _myListView(BuildContext context) {
         leading: Icon(Icons.message, color: Color(0xff5c001e)),
       ),
       ListTile(
-        title: Text('Notification'),
+        title: Text('Notifications'),
         leading: Icon(Icons.notifications, color: Color(0xff5c001e)),
       ),
       ListTile(
