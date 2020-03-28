@@ -1,19 +1,22 @@
-import 'package:elearning_app/settings.dart';
+import 'package:elearning_app/ui/views/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(App());
 
 class App extends StatelessWidget {
+
+  
+
  @override
  Widget build(BuildContext context) {
    return MaterialApp(
      debugShowCheckedModeBanner: false,
-      title: 'Settings',
+      title: 'Login',
       theme: ThemeData(
-        primaryColor: Color(0xFFFFE6A2),
+        primaryColor: Color(0xff5c001e),
         fontFamily: 'Arial',
       ),
-    home: Settings(),
+    home: LoginPage(),
    );
  }
 }
