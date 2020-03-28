@@ -10,7 +10,7 @@ class App extends StatelessWidget {
      debugShowCheckedModeBanner: false,
       title: 'Settings',
       theme: ThemeData(
-        primaryColor: Color(0xff5c001e),
+        primaryColor: Color(0xFFFFE6A2),
         fontFamily: 'Arial',
       ),
     home: Settings(),
