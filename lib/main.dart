@@ -1,104 +1,22 @@
+import 'package:elearning_app/ui/views/login_page.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(App());
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
+class App extends StatelessWidget {
 
-class _MyAppState extends State<MyApp> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Settings',
+  
+
+ @override
+ Widget build(BuildContext context) {
+   return MaterialApp(
+     debugShowCheckedModeBanner: false,
+      title: 'Login',
       theme: ThemeData(
-        primaryColor:  Color(0xff5c001e),    
+        primaryColor: Color(0xff5c001e),
         fontFamily: 'Arial',
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Settings'),
-              )
-            ],
-          ),
-        ),
-        body: Center(child: BodyLayout()),
-        bottomNavigationBar: buildBottomAppBar(),
-      ),
-    );
-  }
-
-  BottomAppBar buildBottomAppBar() {
-    return BottomAppBar(
-        color: Color(0xff5c001e),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Logout'),
-
-            )
-          ],
-        ),
-      );
-  }
-}
-
-class BodyLayout extends StatefulWidget {
-  @override
-  _BodyLayoutState createState() => _BodyLayoutState();
-}
-
-class _BodyLayoutState extends State<BodyLayout> {
-  @override
-  Widget build(BuildContext context) {
-    return _myListView(context);
-  }
-}
-
-Widget _myListView(BuildContext context) {
-  return ListView(
-    children: <Widget>[
-      ListTile(
-        title: Text('Dashboard'),
-        leading: Icon(Icons.folder, color: Color(0xff5c001e)),
-      ),
-      ListTile(
-        title: Text('Profile'),
-        leading: Icon(Icons.person, color: Color(0xff5c001e)),
-      ),
-      ListTile(
-        title: Text('Messages'),
-        leading: Icon(Icons.message, color: Color(0xff5c001e)),
-      ),
-      ListTile(
-        title: Text('Notification'),
-        leading: Icon(Icons.notifications, color: Color(0xff5c001e)),
-      ),
-      ListTile(
-        title: Text('Private Files'),
-        leading: Icon(Icons.lock, color: Color(0xff5c001e)),
-      ),
-      ListTile(
-        title: Text('Calendar'),
-        leading: Icon(Icons.calendar_today, color: Color(0xff5c001e)),
-      ),
-      ListTile(
-        title: Text('Archive'),
-        leading: Icon(Icons.archive, color: Color(0xff5c001e)),
-      ),
-      ListTile(
-        title: Text('Help'),
-        leading: Icon(Icons.help, color: Color(0xff5c001e)),
-      )
-    ],
-  );
+    home: LoginPage(),
+   );
+ }
 }
