@@ -17,8 +17,9 @@ class _SettingsState extends State<Settings> {
         bottomNavigationBar: Container(
           color: Color(0xff5c001e),
           child: TabBar(
-            indicatorColor: Color(0xffffff),
+            indicatorColor: Color(0xffffffff),
             tabs: [Tab(text: 'Logout', icon: Icon(Icons.arrow_downward))],
+            labelColor: Color(0xffffffff),
           ),
         ),
       ),
@@ -30,16 +31,22 @@ AppBar buildAppBar() {
   return AppBar(
     title: Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      // children: <Widget>[
-      //   Image.asset(
-      //     'assets\images\LOGO-UTM.png',
-      //     fit: BoxFit.cover,
-      //     height: 35.0,
-      //   )
-      // ],
+      children: <Widget>[
+        Image(
+          image:
+              NetworkImage('https://brand.utm.my/files/2016/08/LOGO-UTM.png'),
+          width: 100.0,
+          height: 77.0,
+        ),
+        // Container(
+        //       padding: const EdgeInsets.all(8.0),
+        //       child: Text('Settings'),
+        //     )
+      ],
     ),
   );
 }
+
 // class ImageAsset  extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
