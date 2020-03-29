@@ -4,12 +4,27 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() => runApp(App());
 
+
 class App extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _MyAppState();
+  }
+}
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<App> {
 
+  final FirebaseMessaging _messaging = FirebaseMessaging();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _messaging.getToken().then((token) {
+      print(token);
+    });
+  }
   
-
  @override
  Widget build(BuildContext context) {
    return MaterialApp(
@@ -22,5 +37,4 @@ class _MyAppState extends State<MyApp> {
     home: LoginPage(),
    );
  }
-}
 }
