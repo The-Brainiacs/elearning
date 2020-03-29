@@ -55,7 +55,9 @@ Column buildBody() {
     Row( // User's default picture, name & matric id
       children: [
         Container(
-          // color: Color(0x#EEE9EA),
+          color: Color(0xEEE9EA),
+          margin: EdgeInsets.all(25.0),
+          child: FlutterLogo(size: 60.0,),
           //nama
           //matrik
         ),
@@ -65,7 +67,9 @@ Column buildBody() {
     Row( // Courses
       children: [
         Container(
-          
+          color: Colors.black,
+          margin: EdgeInsets.all(25.0),
+          child: FlutterLogo(size: 60.0,),
         ),
         // Container(),
       ],

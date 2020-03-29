@@ -4,9 +4,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() => runApp(App());
 
-class App extends StatefulWidget {
 
-class _MyAppState extends State<MyApp> {
+class App extends StatelessWidget {
 
   final FirebaseMessaging _messaging = FirebaseMessaging();
 
