@@ -1,19 +1,11 @@
 import 'package:elearning_app/ui/views/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() => runApp(App());
 
-<<<<<<< Updated upstream
+
 class App extends StatelessWidget {
-
-  
-=======
-class App extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<App> {
 
   final FirebaseMessaging _messaging = FirebaseMessaging();
 
@@ -25,7 +17,6 @@ class _MyAppState extends State<App> {
       print(token);
     });
   }
->>>>>>> Stashed changes
 
  @override
  Widget build(BuildContext context) {
