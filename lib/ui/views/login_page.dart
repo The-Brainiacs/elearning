@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
             onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => SettingsPage())),
+                            builder: (context) => SettingsPage())), 
             
             color: Color(0xff5c001e),
             child: Text('Log In', style: TextStyle(color: Colors.white)),
