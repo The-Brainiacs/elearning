@@ -1,11 +1,23 @@
 import 'package:elearning_app/ui/views/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() => runApp(App());
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
 
-  
+class _MyAppState extends State<MyApp> {
+
+  final FirebaseMessaging _messaging = FirebaseMessaging();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _messaging.getToken().then((token) {
+      print(token);
+    });
+  }
 
  @override
  Widget build(BuildContext context) {
