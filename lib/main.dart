@@ -77,7 +77,8 @@ Widget _myListView(BuildContext context) {
       ),
       ListTile(
         title: Text('Messages'),
-        leading: Icon(Icons.message, color: Color(0xff5c001e)),
+        leading: Icon(Icons.
+        message, color: Color(0xff5c001e)),
       ),
       ListTile(
         title: Text('Notification'),
