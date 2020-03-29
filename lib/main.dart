@@ -4,10 +4,10 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() => runApp(App());
 
-class App extends StatelessWidget {
-  
+class App extends StatefulWidget {
+
 class _MyAppState extends State<MyApp> {
-  
+
   final FirebaseMessaging _messaging = FirebaseMessaging();
 
   @override
@@ -24,7 +24,6 @@ class _MyAppState extends State<MyApp> {
    return MaterialApp(
      debugShowCheckedModeBanner: false,
       title: 'Login',
-     
       theme: ThemeData(
         primaryColor: Color(0xff5c001e),
         fontFamily: 'Arial',
