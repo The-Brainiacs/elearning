@@ -5,7 +5,14 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 void main() => runApp(App());
 
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _MyAppState();
+  }
+}
+
+class _MyAppState extends State<App> {
 
   final FirebaseMessaging _messaging = FirebaseMessaging();
 
@@ -17,7 +24,7 @@ class App extends StatelessWidget {
       print(token);
     });
   }
-
+  
  @override
  Widget build(BuildContext context) {
    return MaterialApp(
