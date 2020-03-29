@@ -4,10 +4,16 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() => runApp(App());
 
-class App extends StatelessWidget {
-  
-class _MyAppState extends State<MyApp> {
-  
+
+class App extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _MyAppState();
+  }
+}
+
+class _MyAppState extends State<App> {
+
   final FirebaseMessaging _messaging = FirebaseMessaging();
 
   @override
@@ -18,13 +24,12 @@ class _MyAppState extends State<MyApp> {
       print(token);
     });
   }
-
+  
  @override
  Widget build(BuildContext context) {
    return MaterialApp(
      debugShowCheckedModeBanner: false,
       title: 'Login',
-     
       theme: ThemeData(
         primaryColor: Color(0xff5c001e),
         fontFamily: 'Arial',
