@@ -50,7 +50,7 @@ class _LoginPAgeState extends State<LoginPAge> {
             height: 42.0,
             onPressed: (){},
             color: Colors.redAccent,
-            child: Text('Log In', style: TextStyle(color: Colors.white)),
+            child: Text('Log In x', style: TextStyle(color: Colors.white)),
             ),
           ),
         );
