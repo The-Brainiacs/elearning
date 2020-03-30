@@ -8,13 +8,56 @@ class NotificationsPage extends StatefulWidget {
 }
 
 class _NotificationsPageState extends State<NotificationsPage> {
+
+int counter = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Notifications'),
+        actions: <Widget>[
+          new Stack(
+            children: <Widget>[
+              new IconButton(icon: Icon(Icons.notifications), onPressed: () {
+                setState(() {
+                  counter = 0;
+                });
+              }),
+              counter != 0 ? new Positioned(
+                right: 11,
+                top: 11,
+                child: new Container(
+                  padding: EdgeInsets.all(2),
+                  decoration: new BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  constraints: BoxConstraints(
+                    minWidth: 14,
+                    minHeight: 14,
+                  ),
+                  child: Text(
+                    '$counter',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 8,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ) : new Container()
+            ],
+          ),
+        ],
       ),
        body: Center(child: BodyLayout(), ),
+       floatingActionButton: FloatingActionButton(onPressed: () {
+        print("Increment Counter");
+        setState(() {
+          counter++;
+        });
+      }, child: Icon(Icons.add),),
       bottomNavigationBar: buildBottomNav(),
     );
   }
@@ -99,67 +142,7 @@ class _BodyLayoutState extends State<BodyLayout> {
 }
 
 
-class NotificationBadge extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
 
-    return _NotificationBadge();
-  }
-}
-
-class _NotificationBadge extends State<NotificationBadge> {
-  int counter = 0;
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Notification Badge"),
-        actions: <Widget>[
-          new Stack(
-            children: <Widget>[
-              new IconButton(icon: Icon(Icons.notifications), onPressed: () {
-                setState(() {
-                  counter = 0;
-                });
-              }),
-              counter != 0 ? new Positioned(
-                right: 11,
-                top: 11,
-                child: new Container(
-                  padding: EdgeInsets.all(2),
-                  decoration: new BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  constraints: BoxConstraints(
-                    minWidth: 14,
-                    minHeight: 14,
-                  ),
-                  child: Text(
-                    '$counter',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 8,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ) : new Container()
-            ],
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        print("Increment Counter");
-        setState(() {
-          counter++;
-        });
-      }, child: Icon(Icons.add),),
-    );
-  }
-}
 
 BottomNavigationBar buildBottomNav() {
   return BottomNavigationBar(
@@ -171,7 +154,9 @@ BottomNavigationBar buildBottomNav() {
             title: Text('Calendar', style: TextStyle(color: Colors.white),),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications, color: Colors.white),
+            icon: Icon(Icons.notifications,
+
+             color: Colors.white),
             title: Text('Notifications', style: TextStyle(color: Colors.white),),
 
           ),
