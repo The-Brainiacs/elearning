@@ -1,16 +1,14 @@
-# elearning_app
+# Title: elearning_app
 
-A new Flutter project.
+# Members
+1. Muhammad Huzaifah Bin Azman (A17CS0120)
+2. Nur Asma Salsabila Binti Mohamad Yunos (A17CS0147)
+3. Nurmazli Azrin Binti Mohd Razali (A17CS0168)
+4. Nursyahira Sabrina Binti Mohd Sukri (A17CS0171)
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+# Project Video URL
 
-A few resources to get you started if this is your first Flutter project:
+# About 
+Students have been using E-Learning as a platform to download notes, take quizzes, submit assignments. However, there are a lot of features in E-Learning that the students are not aware of. Currently, the E-Learning only available in web-based version and not mobile-based version. The notification feature in E-Learning is not noticeable as the students could only view when the students open the E-Learning. The group chat function is also not utilised by the students and the students need to create groups using WhatsApp or Telegram. The calendar that marks submissions or other important dates is not noticeable.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
