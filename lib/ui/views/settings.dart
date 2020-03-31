@@ -1,3 +1,4 @@
+import 'package:elearning_app/ui/views/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:elearning_app/ui/views/profile.dart';
 import 'package:elearning_app/ui/views/login_page.dart';
@@ -93,6 +94,8 @@ class _BodyLayoutState extends State<BodyLayout> {
       ListTile(
         title: Text('Notifications'),
         leading: Icon(Icons.notifications, color: Color(0xff5c001e)),
+        onTap: () => Navigator.push(
+            context, MaterialPageRoute(builder: (context) => NotificationsPage())),
       ),
       ListTile(
         title: Text('Private Files'),
