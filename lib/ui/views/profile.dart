@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:elearning_app/ui/views/login_page.dart';
 
 
 class ProfilePage extends StatefulWidget {
@@ -15,7 +16,32 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         title: Text('Profile'),
       ),
-      body: buildBody(),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage('images/profile_picture.jpg'),
+            ),
+            Text(
+              'Name',
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Color(0xff5c001e),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              'Matric Number',
+              style: TextStyle(
+                fontSize: 17.0,
+                color: Color(0xff5c001e),
+              ),
+            ),
+          ]
+        )
+      ),
       bottomNavigationBar: buildBottomNav(),
     );
   }
@@ -57,7 +83,7 @@ Column buildBody() {
         Container(
           color: Color(0xEEE9EA),
           margin: EdgeInsets.all(25.0),
-          child: FlutterLogo(size: 60.0,),
+          // child: FlutterLogo(size: 60.0,),
           //nama
           //matrik
         ),
@@ -69,7 +95,7 @@ Column buildBody() {
         Container(
           color: Colors.black,
           margin: EdgeInsets.all(25.0),
-          child: FlutterLogo(size: 60.0,),
+          // child: FlutterLogo(size: 60.0,),
         ),
         // Container(),
       ],
