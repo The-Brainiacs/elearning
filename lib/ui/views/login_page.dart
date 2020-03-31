@@ -14,7 +14,13 @@ class _LoginPageState extends State<LoginPage> {
 
     final logo = Center(
      
-        // child:Image.asset('assets/LOGO-UTM.png'),
+        child:Image.asset('assets/images/LOGO-UTM.png'),
+      
+      );
+
+    final elearning = Center(
+     
+        child:Image.asset('assets/images/e-learning.png'),
       
       );
 
@@ -78,6 +84,7 @@ class _LoginPageState extends State<LoginPage> {
           padding: EdgeInsets.only(left: 24 , right: 24),
           children: <Widget>[
             logo, 
+            elearning,
             SizedBox(height: 48,),
             username,
             SizedBox(height: 8,),
