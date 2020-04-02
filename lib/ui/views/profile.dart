@@ -47,9 +47,9 @@ Container buildProfileInfoContainer() {
             backgroundImage: AssetImage('assets/images/profile_picture.jpg'),
           ),
           Text(
-            'Muhammad Aiman',
+            'Muhammad Aiman Bin Azwak',
             style: TextStyle(
-              fontSize: 25.0,
+              fontSize: 20.0,
               color: Color(0xff5c001e),
               fontWeight: FontWeight.bold,
             ),
@@ -57,7 +57,7 @@ Container buildProfileInfoContainer() {
           Text(
             'A17CS0000',
             style: TextStyle(
-              fontSize: 20.0,
+              fontSize: 17.0,
               color: Color(0xff5c001e),
             ),
           ),
@@ -131,7 +131,7 @@ Column buildStudentCourses() {
             'Courses', 
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 23.0,
+              fontSize: 19.0,
               color: Color(0xff5c001e)
             ),
           ),
@@ -139,7 +139,7 @@ Column buildStudentCourses() {
             '+4 more', 
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 20.0,
+              fontSize: 18.0,
               color: Color(0xff5c001e)
             ),
           ),
@@ -155,7 +155,7 @@ Column buildStudentCourses() {
           Text(
             'Software Engineering Project 1 (SCSJ3032-01)', 
             style: TextStyle(
-              fontSize: 20.0,
+              fontSize: 17.0,
               color: Color(0xff5c001e)
             ),
           ),
@@ -166,7 +166,7 @@ Column buildStudentCourses() {
           Text(
             'Theory Of Computer Science (SCSJ3203-05)', 
             style: TextStyle(
-              fontSize: 20.0,
+              fontSize: 17.0,
               color: Color(0xff5c001e)
             ),
           ),
@@ -187,7 +187,7 @@ Column buildStudentDetails() {
             'Details', 
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 23.0,
+              fontSize: 19.0,
               color: Color(0xff5c001e)
             ),
           ),
@@ -195,7 +195,7 @@ Column buildStudentDetails() {
             '+3 more', 
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 20.0,
+              fontSize: 18.0,
               color: Color(0xff5c001e)
             ),
           ),
@@ -211,7 +211,7 @@ Column buildStudentDetails() {
           Text(
             'User Details', 
             style: TextStyle(
-              fontSize: 20.0,
+              fontSize: 17.0,
               color: Color(0xff5c001e)
             ),
           ),
@@ -222,7 +222,7 @@ Column buildStudentDetails() {
           Text(
             'Privacy And Policy', 
             style: TextStyle(
-              fontSize: 20.0,
+              fontSize: 17.0,
               color: Color(0xff5c001e)
             ),
           ),
@@ -233,7 +233,7 @@ Column buildStudentDetails() {
           Text(
             'Reports', 
             style: TextStyle(
-              fontSize: 20.0,
+              fontSize: 17.0,
               color: Color(0xff5c001e)
             ),
           ),
