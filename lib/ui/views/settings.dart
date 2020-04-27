@@ -1,3 +1,4 @@
+import 'package:elearning_app/ui/views/calendar.dart';
 import 'package:elearning_app/ui/views/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:elearning_app/ui/views/profile.dart';
@@ -104,6 +105,8 @@ class _BodyLayoutState extends State<BodyLayout> {
       ListTile(
         title: Text('Calendar'),
         leading: Icon(Icons.calendar_today, color: Color(0xff5c001e)),
+        onTap: () => Navigator.push(
+            context, MaterialPageRoute(builder: (context) => CalendarPage())),
       ),
       ListTile(
         title: Text('Archive'),
