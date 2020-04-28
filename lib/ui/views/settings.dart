@@ -1,3 +1,4 @@
+import 'package:elearning_app/ui/views/messages.dart';
 import 'package:elearning_app/ui/views/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:elearning_app/ui/views/profile.dart';
@@ -90,6 +91,8 @@ class _BodyLayoutState extends State<BodyLayout> {
       ListTile(
         title: Text('Messages'),
         leading: Icon(Icons.message, color: Color(0xff5c001e)),
+        onTap: () => Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MessagesPage())),
       ),
       ListTile(
         title: Text('Notifications'),

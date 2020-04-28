@@ -1,3 +1,4 @@
+import 'package:elearning_app/ui/views/messages.dart';
 import 'package:elearning_app/ui/views/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:elearning_app/ui/views/login_page.dart';
@@ -16,7 +17,9 @@ class Router {
       case 'profile':
         return MaterialPageRoute(builder: (_) => ProfilePage()); 
       case 'notifications':
-        return MaterialPageRoute(builder: (_) => NotificationsPage());     
+        return MaterialPageRoute(builder: (_) => NotificationsPage());   
+        case 'messages':
+        return MaterialPageRoute(builder: (_) => MessagesPage());     
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
