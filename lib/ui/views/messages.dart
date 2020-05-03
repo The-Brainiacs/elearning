@@ -1,3 +1,4 @@
+import 'package:elearning_app/ui/views/newmessage.dart';
 import 'package:flutter/material.dart';
 
 class MessagesPage extends StatefulWidget {
@@ -77,6 +78,15 @@ class _BodyLayoutState extends State<BodyLayout> {
     return ListView(children: <Widget>[
       
       ListTile(
+        title: Text('New Message',
+        style: TextStyle(
+          fontSize: 20,
+        ),
+        ),
+        onTap: () => Navigator.push(
+            context, MaterialPageRoute(builder: (context) => NewMessagePage())),
+      ),
+      ListTile(
         title: Text('Nur Amira'),
         subtitle: Text('Google drive link on our project documentation: https://docs.google.com/document/d/1jDLdr6TH07H262SNvOI4Vy-CjuPc6mZ2Po2hwg2a1w0/edit',
         style: TextStyle(
@@ -84,22 +94,7 @@ class _BodyLayoutState extends State<BodyLayout> {
                     ),
         ),
         leading: Icon(Icons.person, color: Color(0xff5c001e)),
-        onTap: () {
-          final snackBar = SnackBar(
-            content: Text('You have not submitted Project Proposal 1'),
-            action: SnackBarAction(
-              label: 'Undo',
-              onPressed: () {
-                // Some code to undo the change.
-              },
-            ),
-          );
 
-          // Find the Scaffold in the widget tree and use
-          // it to show a SnackBar.
-          Scaffold.of(context).showSnackBar(snackBar);
-        },
-        // child: Text('Show SnackBar'),
       ),
       ListTile(
         title: Text('Ahmad Fariz'),
@@ -123,32 +118,12 @@ class _BodyLayoutState extends State<BodyLayout> {
         
         leading: Icon(Icons.person, color: Color(0xff5c001e)),
         
-        onTap: () {
-          final snackBar = SnackBar(
-            content: Text('Group 4 have not completed assignment 3, please submit by tomorrow'),
-            action: SnackBarAction(
-              label: 'Undo',
-              onPressed: () {
-                // Some code to undo the change.
-              },
-            ),
-          );
-
-          // Find the Scaffold in the widget tree and use
-          // it to show a SnackBar.
-          Scaffold.of(context).showSnackBar(snackBar);
-        },
-        
-        // child: Text('Show SnackBar'),
       ),
 
       
     ]);
   }
 }
-
-
-
 
 BottomNavigationBar buildBottomNav() {
   return BottomNavigationBar(
@@ -157,26 +132,26 @@ BottomNavigationBar buildBottomNav() {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today, color: Colors.white),
-            title: Text('Calendar', style: TextStyle(color: Colors.white),),
+            title: Text('', style: TextStyle(color: Colors.white),),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications,
 
              color: Colors.white),
-            title: Text('Messages', style: TextStyle(color: Colors.white),),
+            title: Text('', style: TextStyle(color: Colors.white),),
 
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.folder, color: Colors.white),
-            title: Text('Archive', style: TextStyle(color: Colors.white),),
+            title: Text('', style: TextStyle(color: Colors.white),),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.mail, color: Colors.white),
-            title: Text('Messages', style: TextStyle(color: Colors.white),),
+            title: Text('', style: TextStyle(color: Colors.white),),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.exit_to_app, color: Colors.white),
-            title: Text('Log Out', style: TextStyle(color: Colors.white),),
+            title: Text('', style: TextStyle(color: Colors.white),),
           ),
         ],
   );
