@@ -1,7 +1,10 @@
+import 'package:elearning_app/ui/shared/dashboard_data.dart';
 import 'package:elearning_app/ui/views/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:elearning_app/ui/views/profile.dart';
 import 'package:elearning_app/ui/views/login_page.dart';
+
+import 'dashboard.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -80,6 +83,10 @@ class _BodyLayoutState extends State<BodyLayout> {
       ListTile(
         title: Text('Dashboard'),
         leading: Icon(Icons.folder, color: Color(0xff5c001e)),
+        onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DashboardPage(mockDataDashboard))),
       ),
       ListTile(
         title: Text('Profile'),
