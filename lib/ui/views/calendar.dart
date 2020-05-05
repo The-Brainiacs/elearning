@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+//import 'package:firebase/firebase.dart';
+
 
 class CalendarPage extends StatefulWidget {
   @override
@@ -9,14 +11,13 @@ class CalendarPage extends StatefulWidget {
 class _CalendarPageState extends State<CalendarPage> {
   CalendarController _controller;
   Map<DateTime, List<dynamic>> _events;
-  //TextEditingController _eventController;
+
 
   @override
   void initState() {
     super.initState();
     _controller = CalendarController();
-    //_eventController = TextEditingController();
-    _events = {};
+    
   }
 
   Map<String, dynamic> encodeMap(Map<DateTime, dynamic> map) {
@@ -104,35 +105,6 @@ class _CalendarPageState extends State<CalendarPage> {
     );
   }
 
-  // _showAddDialog() {
-  //   showDialog(
-  //       context: context,
-  //       builder: (context) => AlertDialog(
-  //             content: TextField(
-  //               controller: _eventController,
-  //             ),
-  //             actions: <Widget>[
-  //               FlatButton(
-  //                 child: Text('Save'),
-  //                 onPressed: () {
-  //                   if (_eventController.text.isEmpty) return;
-  //                   setState(() {
-  //                     if (_events[_controller.selectedDay] != null) {
-  //                       _events[_controller.selectedDay]
-  //                           .add(_eventController.text);
-  //                     } else {
-  //                       _events[_controller.selectedDay] = [
-  //                         _eventController.text
-  //                       ];
-  //                     }
-  //                   });
-  //                 },
-  //               )
-  //             ],
-  //           ));
-  // }
-}
-
 BottomNavigationBar buildBottomNav() {
   return BottomNavigationBar(
     type: BottomNavigationBarType.fixed,
@@ -140,39 +112,25 @@ BottomNavigationBar buildBottomNav() {
     items: [
       BottomNavigationBarItem(
         icon: Icon(Icons.calendar_today, color: Colors.white),
-        title: Text(
-          'Calendar',
-          style: TextStyle(color: Colors.white),
-        ),
+        title: Text(''),
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.notifications, color: Colors.white),
-        title: Text(
-          'Notifications',
-          style: TextStyle(color: Colors.white),
-        ),
+        title: Text(''),
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.folder, color: Colors.white),
-        title: Text(
-          'Archive',
-          style: TextStyle(color: Colors.white),
-        ),
+        title: Text(''),
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.mail, color: Colors.white),
-        title: Text(
-          'Messages',
-          style: TextStyle(color: Colors.white),
-        ),
+        title: Text(''),
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.exit_to_app, color: Colors.white),
-        title: Text(
-          'Log Out',
-          style: TextStyle(color: Colors.white),
-        ),
+        title: Text(''),
       ),
     ],
   );
+}
 }
