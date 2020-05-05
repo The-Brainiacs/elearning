@@ -22,7 +22,7 @@ class _AssignmentPageState extends State<AssignmentPage> {
       appBar: AppBar(
     backgroundColor: Color(0xff5c001e),
     title: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Container(
           padding: const EdgeInsets.all(8.0),

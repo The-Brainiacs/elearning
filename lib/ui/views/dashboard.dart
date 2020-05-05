@@ -67,7 +67,7 @@ void _navigate(int index) async {
                 lineHeight: 15.0,
                 animationDuration: 2000,
                 percent: (widget.course[index].prog.round())/100,
-                center: Text(widget.course[index].prog.round().toString(),  style: TextStyle(color: Colors.white)),
+                center: Text( widget.course[index].prog.round().toString() + '%',  style: TextStyle(color: Colors.white)),
                 linearStrokeCap: LinearStrokeCap.roundAll,
                 progressColor: Color(0xff5c001e).withOpacity(1),
               ),
