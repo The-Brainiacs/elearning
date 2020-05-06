@@ -1,3 +1,5 @@
+import 'package:elearning_app/ui/models/message_data.dart';
+import 'package:elearning_app/ui/views/messages.dart';
 import 'package:flutter/material.dart';
 
 class NewMessagePage extends StatefulWidget {
@@ -19,13 +21,13 @@ class _NewMessagePageState extends State<NewMessagePage> {
       body: Center(
         child: BodyLayout(),
       ),
-      
       bottomNavigationBar: buildBottomNav(),
     );
   }
 }
 
 class BodyLayout extends StatefulWidget {
+
   @override
   _BodyLayoutState createState() => _BodyLayoutState();
 }
@@ -33,6 +35,7 @@ class BodyLayout extends StatefulWidget {
 class _BodyLayoutState extends State<BodyLayout> {
   final TextEditingController _controller = new TextEditingController();
   final TextEditingController _controller2 = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -50,21 +53,21 @@ class _BodyLayoutState extends State<BodyLayout> {
           SizedBox(height: 10),
           new TextField(
             controller: _controller,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.lightBlue[50],
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.black,
-                          ),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        hintText: "example@gmail.com",
-                        errorText: "*required",
-                        errorStyle: TextStyle(
-                            color: Colors.red, fontWeight: FontWeight.bold)),
+            decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.lightBlue[50],
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.black,
                   ),
-              SizedBox(height: 20),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                hintText: "example@gmail.com",
+                errorText: "*required",
+                errorStyle:
+                    TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+          ),
+          SizedBox(height: 20),
           new Text(
             'Messages : ',
             style: TextStyle(
@@ -75,8 +78,8 @@ class _BodyLayoutState extends State<BodyLayout> {
           new TextField(
               controller: _controller2,
               decoration: InputDecoration(
-    filled: true,
-                      fillColor: Colors.lightBlue[50],
+                filled: true,
+                fillColor: Colors.lightBlue[50],
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.black,
@@ -86,25 +89,49 @@ class _BodyLayoutState extends State<BodyLayout> {
                 hintText: "Your messages",
               )),
           SizedBox(height: 30),
-          new RaisedButton(
+          FloatingActionButton.extended(
+            label: const Text('Send message'),
+            heroTag: null,
             onPressed: () {
               showDialog(
                 context: context,
-                child: new AlertDialog(
-                  title: new Text('Send messages to '),
-                  content: new Text(_controller.text),
+                child: Column(
+                  children: <Widget>[
+                    new AlertDialog(
+                      title: 
+                          Column(
+                            children: <Widget>[
+                              new Text('Send messages to '),
+                              Text( _controller.text, 
+                              style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                ),),
+                              new Text('----------------------------------------'),
+                            ],
+                          ),
+                      content: 
+                          new Text(_controller2.text),
+                    ),
+                    FloatingActionButton.extended(
+                      label: const Text('Send Message'),
+                      heroTag: null,
+                      onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MessagesPage(mockData))),
+                    ),
+                  ],
                 ),
               );
             },
-            child: new Text('SEND'),
+            //   () => Navigator.push(
+            // context, MaterialPageRoute(builder: (context) => MessagesPage(mockData))),
           ),
         ],
       ),
     );
   }
 }
-
-
 
 BottomNavigationBar buildBottomNav() {
   return BottomNavigationBar(

@@ -2,6 +2,9 @@ import 'package:elearning_app/ui/views/newmessage.dart';
 import 'package:flutter/material.dart';
 
 class MessagesPage extends StatefulWidget {
+ final List _msg;
+MessagesPage(this._msg);
+
   @override
   State<StatefulWidget> createState() {
     return _MessagesPageState();
@@ -52,76 +55,26 @@ int counter = 0;
           ),
         ],
       ),
-       body: Center(child: BodyLayout(), ),
-       floatingActionButton: FloatingActionButton(onPressed: () {
-        print("Increment Counter");
-        setState(() {
-          counter++;
-        });
-      }, child: Icon(Icons.add),),
+       body: ListView.separated(
+        itemCount: widget._msg.length,
+        itemBuilder: (context, index) => 
+        ListTile(
+          title: Text(widget._msg[index].email),
+          subtitle: Text(widget._msg[index].content),
+        ),
+        separatorBuilder: (context, index) => Divider(
+          color: Colors.grey,
+        ),
+      ),
+       floatingActionButton: FloatingActionButton.extended(
+         label: const Text('Add New Message'),
+              icon: const Icon(Icons.add),
+              heroTag: null,
+              onPressed: () => Navigator.push(
+            context, MaterialPageRoute(builder: (context) => NewMessagePage())),
+            ),
       bottomNavigationBar: buildBottomNav(),
     );
-  }
-}
-
-class BodyLayout extends StatefulWidget {
-  
-  @override
-  _BodyLayoutState createState() => _BodyLayoutState();
-  
-}
-
-class _BodyLayoutState extends State<BodyLayout> {
-  
-  @override
-  Widget build(BuildContext context) {
-    return ListView(children: <Widget>[
-      
-      ListTile(
-        title: Text('New Message',
-        style: TextStyle(
-          fontSize: 20,
-        ),
-        ),
-        onTap: () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => NewMessagePage())),
-      ),
-      ListTile(
-        title: Text('Nur Amira'),
-        subtitle: Text('Google drive link on our project documentation: https://docs.google.com/document/d/1jDLdr6TH07H262SNvOI4Vy-CjuPc6mZ2Po2hwg2a1w0/edit',
-        style: TextStyle(
-                      fontSize: 15,
-                    ),
-        ),
-        leading: Icon(Icons.person, color: Color(0xff5c001e)),
-
-      ),
-      ListTile(
-        title: Text('Ahmad Fariz'),
-        subtitle: Text('Meeting at 8 p.m. Please come in time. Thank you.',
-        style: TextStyle(
-                      fontSize: 15,
-                    ),
-        ),
-        leading: Icon(Icons.person, color: Color(0xff5c001e)),
-        
-        // child: Text('Show SnackBar'),
-      ),
-      ListTile(
-        
-        title: Text('Shazwan Shakirin'),
-        subtitle: Text('Ok.',
-        style: TextStyle(
-                      fontSize: 15,
-                    ),
-        ),
-        
-        leading: Icon(Icons.person, color: Color(0xff5c001e)),
-        
-      ),
-
-      
-    ]);
   }
 }
 

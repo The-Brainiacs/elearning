@@ -1,3 +1,4 @@
+import 'package:elearning_app/ui/models/message_data.dart';
 import 'package:elearning_app/ui/views/messages.dart';
 import 'package:elearning_app/ui/views/notifications.dart';
 import 'package:flutter/material.dart';
@@ -92,7 +93,7 @@ class _BodyLayoutState extends State<BodyLayout> {
         title: Text('Messages'),
         leading: Icon(Icons.message, color: Color(0xff5c001e)),
         onTap: () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MessagesPage())),
+            context, MaterialPageRoute(builder: (context) => MessagesPage(mockData))),
       ),
       ListTile(
         title: Text('Notifications'),
