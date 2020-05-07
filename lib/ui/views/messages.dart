@@ -15,6 +15,10 @@ class _MessagesPageState extends State<MessagesPage> {
   final TextEditingController _controller = new TextEditingController();
   final TextEditingController _controller2 = new TextEditingController();
   int counter = 0;
+  List<String> litems = [];
+  List<String> ctrl1 = [];
+  List<String> ctrl2 = [];
+  final TextEditingController eCtrl = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,17 +64,56 @@ class _MessagesPageState extends State<MessagesPage> {
           ),
         ],
       ),
-      body: ListView.separated(
-        itemCount: widget._msg.length,
-        itemBuilder: (context, index) => ListTile(
-          title: Text(widget._msg[index].email),
-          subtitle: Text(widget._msg[index].content),
-        ),
-        separatorBuilder: (context, index) => Divider(
-          color: Colors.grey,
-        ),
+      body: new Column(
+        children: <Widget>[
+          SizedBox(
+                        height: 30,
+                        width: 350,
+                      ),
+          new Expanded(
+            child: new ListView.builder(
+                itemCount: ctrl1.length,
+                itemBuilder: (BuildContext ctxt, int iindex) {
+                  return Column(
+                    children: <Widget>[
+                      new Text(
+                        ctrl1[iindex],
+                        style: TextStyle(
+                          fontSize: 21.0,
+                          color: Color(0xff5c001e),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      new Text(ctrl2[iindex],
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.black,
+                          fontStyle: FontStyle.italic,
+                        ),),
+                      SizedBox(
+                        height: 30,
+                        width: 350,
+                        child: Divider(
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  );
+                }),
+          ),
+        ],
       ),
-  
+      // body: ListView.separated(
+      //   itemCount: widget._msg.length,
+      //   itemBuilder: (context, index) => ListTile(
+      //     title: Text(widget._msg[index].email),
+      //     subtitle: Text(widget._msg[index].content),
+      //   ),
+      //   separatorBuilder: (context, index) => Divider(
+      //     color: Colors.grey,
+      //   ),
+      // ),
+
       floatingActionButton: FloatingActionButton.extended(
         label: const Text('Add new message'),
         heroTag: null,
@@ -101,11 +144,16 @@ class _MessagesPageState extends State<MessagesPage> {
                               ),
                               borderRadius: BorderRadius.circular(10.0),
                             ),
-                            hintText: "example@gmail.com",
+                            hintText: "example : Misha Omar",
                             errorText: "*required",
                             errorStyle: TextStyle(
                                 color: Colors.red,
                                 fontWeight: FontWeight.bold)),
+                        onSubmitted: (text) {
+                          ctrl1.add(text);
+                          _controller.clear();
+                          setState(() {});
+                        },
                       ),
                       SizedBox(height: 20),
                       new Text(
@@ -116,63 +164,68 @@ class _MessagesPageState extends State<MessagesPage> {
                       ),
                       SizedBox(height: 10),
                       new TextField(
-                          controller: _controller2,
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.lightBlue[50],
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.black,
-                              ),
-                              borderRadius: BorderRadius.circular(10.0),
+                        controller: _controller2,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.lightBlue[50],
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.black,
                             ),
-                            hintText: "Your messages",
-                          )),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          hintText: "Your messages",
+                        ),
+                        onSubmitted: (text) {
+                          ctrl2.add(text);
+                          _controller2.clear();
+                          setState(() {});
+                        },
+                      ),
                       SizedBox(height: 30),
                       FloatingActionButton.extended(
                         label: const Text('Send'),
                         heroTag: null,
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            child: Column(
-                              children: <Widget>[
-                                new AlertDialog(
-                                  title: Column(
-                                    children: <Widget>[
-                                      new Text('Send messages to '),
-                                      Text(
-                                        _controller.text,
-                                        style: TextStyle(
-                                          fontStyle: FontStyle.italic,
-                                        ),
-                                      ),
-                                      new Text(
-                                          '----------------------------------------'),
-                                    ],
-                                  ),
-                                  content: new Text(_controller2.text),
-                                ),
-                                FloatingActionButton.extended(
-                                  label: const Text('Ok'),
-                                  icon: const Icon(Icons.check_circle),
-                                  heroTag: null,
-                                  onPressed: () => 
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              MessagesPage(mockData))),
-                                  // Navigator.maybePop(context),
-                                  // Navigator.of(context).pushAndRemoveUntil(
-                                  //   MaterialPageRoute(builder: (context) =>MessagesPage(mockData)), ModalRoute.withName('settings')),
-                                  // Navigator.popUntil(context, ModalRoute.withName('messages')),
-
-                                ),
-                              ],
-                            ),
-                          );
-                        },
+                        onPressed: () => Navigator.pop(context),
+                        // onPressed: () {
+                        //   showDialog(
+                        //     context: context,
+                        //     child: Column(
+                        //       children: <Widget>[
+                        //         new AlertDialog(
+                        //           title: Column(
+                        //             children: <Widget>[
+                        //               new Text('Send messages to '),
+                        //               Text(
+                        //                 _controller.text,
+                        //                 style: TextStyle(
+                        //                   fontStyle: FontStyle.italic,
+                        //                 ),
+                        //               ),
+                        //               new Text(
+                        //                   '----------------------------------------'),
+                        //             ],
+                        //           ),
+                        //           content: new Text(_controller2.text),
+                        //         ),
+                        //         FloatingActionButton.extended(
+                        //           label: const Text('Ok'),
+                        //           icon: const Icon(Icons.check_circle),
+                        //           heroTag: null,
+                        //           onPressed: () => Navigator.push(
+                        //               context,
+                        //               MaterialPageRoute(
+                        //                   builder: (context) =>
+                        //                       MessagesPage(mockData))),
+                        //           // Navigator.maybePop(context),
+                        //           // Navigator.of(context).pushAndRemoveUntil(
+                        //           //   MaterialPageRoute(builder: (context) =>MessagesPage(mockData)), ModalRoute.withName('settings')),
+                        //           // Navigator.popUntil(context, ModalRoute.withName('messages')),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //   );
+                        // },
                       ),
                     ],
                   ),
