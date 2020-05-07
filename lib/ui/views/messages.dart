@@ -26,42 +26,7 @@ class _MessagesPageState extends State<MessagesPage> {
       appBar: AppBar(
         title: Text('Messages'),
         actions: <Widget>[
-          new Stack(
-            children: <Widget>[
-              new IconButton(
-                  icon: Icon(Icons.notifications),
-                  onPressed: () {
-                    setState(() {
-                      counter = 0;
-                    });
-                  }),
-              counter != 0
-                  ? new Positioned(
-                      right: 11,
-                      top: 11,
-                      child: new Container(
-                        padding: EdgeInsets.all(2),
-                        decoration: new BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        constraints: BoxConstraints(
-                          minWidth: 14,
-                          minHeight: 14,
-                        ),
-                        child: Text(
-                          '$counter',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 8,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    )
-                  : new Container()
-            ],
-          ),
+         Icon(Icons.message, color: Colors.white),
         ],
       ),
       body: new Column(
@@ -76,6 +41,7 @@ class _MessagesPageState extends State<MessagesPage> {
                 itemBuilder: (BuildContext ctxt, int iindex) {
                   return Column(
                     children: <Widget>[
+                      new Icon(Icons.person),
                       new Text(
                         ctrl1[iindex],
                         style: TextStyle(
@@ -186,7 +152,7 @@ class _MessagesPageState extends State<MessagesPage> {
                       FloatingActionButton.extended(
                         label: const Text('Send'),
                         heroTag: null,
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () => Navigator.of(context).pop(widget._msg),
                         // onPressed: () {
                         //   showDialog(
                         //     context: context,

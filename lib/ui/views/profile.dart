@@ -77,7 +77,7 @@ Container buildProfileInfoContainer() {
 Container buildCoursesContainer() {
   return Container( // Courses
     width: 360,
-    padding: EdgeInsets.all(10.0),
+    padding: 
     margin: EdgeInsets.symmetric(
       vertical: 10.0,
       horizontal: 25.0,
