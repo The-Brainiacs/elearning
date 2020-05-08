@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:elearning_app/ui/views/login_page.dart';
 import 'package:elearning_app/ui/views/profile.dart';
 import 'package:elearning_app/ui/views/settings.dart';
+import 'package:elearning_app/ui/shared/dashboard_data.dart';
 
 const String initialRoute = "login";
 
@@ -14,7 +15,7 @@ class Router {
       case 'settings':
         return MaterialPageRoute(builder: (_) => SettingsPage());
       case 'profile':
-        return MaterialPageRoute(builder: (_) => ProfilePage()); 
+        return MaterialPageRoute(builder: (_) => ProfilePage(mockDataDashboard)); 
       case 'notifications':
         return MaterialPageRoute(builder: (_) => NotificationsPage());     
       default:
