@@ -151,26 +151,23 @@ BottomNavigationBar buildBottomNav() {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today, color: Colors.white),
-            title: Text('Calendar', style: TextStyle(color: Colors.white),),
+            title: Text(''),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications,
-
-             color: Colors.white),
-            title: Text('Notifications', style: TextStyle(color: Colors.white),),
-
+            icon: Icon(Icons.notifications, color: Colors.white),
+            title: Text(''),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.folder, color: Colors.white),
-            title: Text('Archive', style: TextStyle(color: Colors.white),),
+            icon: Icon(Icons.folder, color: Colors.white), 
+            title: Text(''),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.mail, color: Colors.white),
-            title: Text('Messages', style: TextStyle(color: Colors.white),),
+            title: Text(''),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.exit_to_app, color: Colors.white),
-            title: Text('Log Out', style: TextStyle(color: Colors.white),),
+            title: Text(''),
           ),
         ],
   );
