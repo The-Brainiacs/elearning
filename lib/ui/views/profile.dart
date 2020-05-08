@@ -18,6 +18,83 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     
+    final studentCourses = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+
+            Text(
+              'Courses', 
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 19.0,
+                color: Color(0xff5c001e)
+              ),
+            ),
+            Text(
+              '+4 more', 
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18.0,
+                color: Color(0xff5c001e)
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 5,
+          width: 300,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            // Expanded( //TODO
+            //   child: new ListView.builder(
+            //     itemCount: widget.course.length,
+            //     itemBuilder: (context, index) {
+            //       return Text(
+            //         widget.course[index].title,
+            //         style: TextStyle(
+            //           fontSize: 17.0,
+            //           color: Color(0xff5c001e)
+            //         ),
+            //       );
+            //     },
+            //     // itemCount: widget.course.length,
+            //     // itemBuilder: (context, index) => Text(
+            //     //   widget.course[index].title, 
+            //     //   style: TextStyle(
+            //     //     fontSize: 17.0,
+            //     //     color: Color(0xff5c001e)
+            //     //   ),
+            //     // ),
+            //   ),
+            // ),
+            Text(
+              'Software Engineering Project 1 (SCSJ3032-01)', 
+              style: TextStyle(
+                fontSize: 17.0,
+                color: Color(0xff5c001e)
+              ),
+            ),
+            SizedBox(
+              height: 5,
+              width: 300,
+            ),
+            Text(
+              'Theory Of Computer Science (SCSJ3203-05)', 
+              style: TextStyle(
+                fontSize: 17.0,
+                color: Color(0xff5c001e)
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+
     final editProfileButton = FlatButton(
       child: Text('Edit Profile'),
       color: Color(0xff5c001e),
@@ -140,7 +217,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       child: Align(
         alignment: Alignment.centerLeft,
-        child: buildStudentCourses(),
+        child: studentCourses,
       ),
     );
 
@@ -148,7 +225,7 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         title: Text('Profile'),
       ),
-      body: SafeArea(
+      body: new SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -226,63 +303,6 @@ Container buildDetailsContainer(Column studentDetails) {
       )
     ),
     child: studentDetails,
-  );
-}
-
-Column buildStudentCourses() {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-
-          Text(
-            'Courses', 
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 19.0,
-              color: Color(0xff5c001e)
-            ),
-          ),
-          Text(
-            '+4 more', 
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18.0,
-              color: Color(0xff5c001e)
-            ),
-          ),
-        ],
-      ),
-      SizedBox(
-        height: 5,
-        width: 300,
-      ),
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            'Software Engineering Project 1 (SCSJ3032-01)', 
-            style: TextStyle(
-              fontSize: 17.0,
-              color: Color(0xff5c001e)
-            ),
-          ),
-          SizedBox(
-            height: 5,
-            width: 300,
-          ),
-          Text(
-            'Theory Of Computer Science (SCSJ3203-05)', 
-            style: TextStyle(
-              fontSize: 17.0,
-              color: Color(0xff5c001e)
-            ),
-          ),
-        ],
-      ),
-    ],
   );
 }
 
