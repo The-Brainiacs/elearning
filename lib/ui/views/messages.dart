@@ -1,4 +1,4 @@
-import 'package:elearning_app/ui/models/message_data.dart';
+// import 'package:elearning_app/ui/models/message_data.dart';
 import 'package:flutter/material.dart';
 
 class MessagesPage extends StatefulWidget {
@@ -14,11 +14,11 @@ class MessagesPage extends StatefulWidget {
 class _MessagesPageState extends State<MessagesPage> {
   final TextEditingController _controller = new TextEditingController();
   final TextEditingController _controller2 = new TextEditingController();
-  int counter = 0;
-  List<String> litems = [];
+
   List<String> ctrl1 = [];
   List<String> ctrl2 = [];
-  final TextEditingController eCtrl = new TextEditingController();
+
+  int counter = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -26,36 +26,53 @@ class _MessagesPageState extends State<MessagesPage> {
       appBar: AppBar(
         title: Text('Messages'),
         actions: <Widget>[
-         Icon(Icons.message, color: Colors.white),
+          Icon(Icons.message, color: Colors.white),
         ],
       ),
       body: new Column(
         children: <Widget>[
           SizedBox(
-                        height: 30,
-                        width: 350,
-                      ),
+            height: 30,
+            width: 350,
+          ),
           new Expanded(
             child: new ListView.builder(
                 itemCount: ctrl1.length,
                 itemBuilder: (BuildContext ctxt, int iindex) {
+                  final item = ctrl1[iindex];
                   return Column(
                     children: <Widget>[
-                      new Icon(Icons.person),
+                      Dismissible(
+                        key: Key(item),
+                        onDismissed: (direction) {
+                          setState(() {
+                            ctrl1.removeAt(iindex);
+                            ctrl2.removeAt(iindex);
+                          });
+                        },
+                        background: Container(color: Colors.red),
+                        child: Row(
+                          children: <Widget>[
+                            new Icon(Icons.person),
                       new Text(
-                        ctrl1[iindex],
+                        '  ' + ctrl1[iindex]  + '  ',
                         style: TextStyle(
                           fontSize: 21.0,
                           color: Color(0xff5c001e),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      new Text(ctrl2[iindex],
-                      style: TextStyle(
+                      new Text(
+                        ctrl2[iindex],
+                        style: TextStyle(
                           fontSize: 20.0,
                           color: Colors.black,
                           fontStyle: FontStyle.italic,
-                        ),),
+                        ),
+                      ),
+                          ],
+                        ),
+                      ),
                       SizedBox(
                         height: 30,
                         width: 350,
@@ -117,7 +134,7 @@ class _MessagesPageState extends State<MessagesPage> {
                                 fontWeight: FontWeight.bold)),
                         onSubmitted: (text) {
                           ctrl1.add(text);
-                          _controller.clear();
+                          
                           setState(() {});
                         },
                       ),
@@ -144,6 +161,7 @@ class _MessagesPageState extends State<MessagesPage> {
                         ),
                         onSubmitted: (text) {
                           ctrl2.add(text);
+                          _controller.clear();
                           _controller2.clear();
                           setState(() {});
                         },
