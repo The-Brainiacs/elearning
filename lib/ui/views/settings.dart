@@ -92,7 +92,7 @@ class _BodyLayoutState extends State<BodyLayout> {
         title: Text('Profile'),
         leading: Icon(Icons.person, color: Color(0xff5c001e)),
         onTap: () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ProfilePage())),
+            context, MaterialPageRoute(builder: (context) => ProfilePage(mockDataDashboard))),
       ),
       ListTile(
         title: Text('Messages'),
