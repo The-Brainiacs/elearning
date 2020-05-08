@@ -306,7 +306,7 @@ Container buildDetailsContainer(Column studentDetails) {
   );
 }
 
-BottomNavigationBar buildBottomNav() {
+BottomNavigationBar buildBottomNav() { 
   return BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Color(0xff5c001e),
