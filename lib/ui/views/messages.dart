@@ -83,6 +83,7 @@ class _MessagesPageState extends State<MessagesPage> {
                     ],
                   );
                 }),
+                
           ),
         ],
       ),
@@ -117,8 +118,10 @@ class _MessagesPageState extends State<MessagesPage> {
                       ),
                       SizedBox(height: 10),
                       new TextField(
+                        
                         controller: _controller,
                         decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.person),
                             filled: true,
                             fillColor: Colors.lightBlue[50],
                             errorBorder: OutlineInputBorder(
@@ -137,6 +140,7 @@ class _MessagesPageState extends State<MessagesPage> {
                           
                           setState(() {});
                         },
+                        
                       ),
                       SizedBox(height: 20),
                       new Text(
@@ -147,8 +151,11 @@ class _MessagesPageState extends State<MessagesPage> {
                       ),
                       SizedBox(height: 10),
                       new TextField(
+
+                        // maxLines: 4,
                         controller: _controller2,
                         decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.message),
                           filled: true,
                           fillColor: Colors.lightBlue[50],
                           enabledBorder: OutlineInputBorder(
