@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:elearning_app/ui/views/edit_profile.dart';
-
+import 'package:elearning_app/ui/shared/dashboard_data.dart';
+import 'package:elearning_app/ui/views/user_details.dart';
 
 class ProfilePage extends StatefulWidget {
+  final List <Course> course;
+
+  ProfilePage(this.course);
+
   @override
   State<StatefulWidget> createState() {
     return _ProfilePageState();
@@ -23,6 +28,98 @@ class _ProfilePageState extends State<ProfilePage> {
           MaterialPageRoute(builder: (context) => EditProfilePage()),
         );
       }
+    );
+
+    final studentDetails = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              'Details', 
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 19.0,
+                color: Color(0xff5c001e)
+              ),
+            ),
+            Text(
+              '+3 more', 
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18.0,
+                color: Color(0xff5c001e)
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 5,
+          width: 300,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            InkWell(
+                child: new Text(
+                  'User Details', 
+                  style: TextStyle(
+                    fontSize: 17.0,
+                    color: Color(0xff5c001e)
+                  ),
+                ),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          UserDetailsPage()
+                  ),
+                ),
+            ),
+            SizedBox(
+              height: 5,
+              width: 300,
+            ),
+            InkWell(
+                child: new Text(
+                  'Privacy And Policy', 
+                  style: TextStyle(
+                    fontSize: 17.0,
+                    color: Color(0xff5c001e)
+                  ),
+                ),
+                // onTap: () => Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //       builder: (context) =>
+                //           UserDetailsPage()
+                //   ),
+                // ),
+            ),
+            SizedBox(
+              height: 5,
+              width: 300,
+            ),
+            InkWell(
+                child: new Text(
+                  'Reports', 
+                  style: TextStyle(
+                    fontSize: 17.0,
+                    color: Color(0xff5c001e)
+                  ),
+                ),
+                // onTap: () => Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //       builder: (context) =>
+                //           UserDetailsPage()
+                //   ),
+                // ),
+            ),
+          ],
+        ),
+      ],
     );
 
     final coursesContainer = Container( // Courses
@@ -57,7 +154,7 @@ class _ProfilePageState extends State<ProfilePage> {
           children: <Widget>[
             buildProfileInfoContainer(editProfileButton),
             coursesContainer,
-            buildDetailsContainer(),
+            buildDetailsContainer(studentDetails),
           ]
         ),
         
@@ -111,7 +208,7 @@ Container buildProfileInfoContainer(FlatButton editProfileButton) {
   );
 }
 
-Container buildDetailsContainer() {
+Container buildDetailsContainer(Column studentDetails) {
   return Container( // Details
     width: 360,
     padding: EdgeInsets.all(10.0),
@@ -128,7 +225,7 @@ Container buildDetailsContainer() {
         Radius.circular(5.0),
       )
     ),
-    child: buildStudentDetails(),
+    child: studentDetails,
   );
 }
 
@@ -189,73 +286,6 @@ Column buildStudentCourses() {
   );
 }
 
-Column buildStudentDetails() {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Text(
-            'Details', 
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 19.0,
-              color: Color(0xff5c001e)
-            ),
-          ),
-          Text(
-            '+3 more', 
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18.0,
-              color: Color(0xff5c001e)
-            ),
-          ),
-        ],
-      ),
-      SizedBox(
-        height: 5,
-        width: 300,
-      ),
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            'User Details', 
-            style: TextStyle(
-              fontSize: 17.0,
-              color: Color(0xff5c001e)
-            ),
-          ),
-          SizedBox(
-            height: 5,
-            width: 300,
-          ),
-          Text(
-            'Privacy And Policy', 
-            style: TextStyle(
-              fontSize: 17.0,
-              color: Color(0xff5c001e)
-            ),
-          ),
-          SizedBox(
-            height: 5,
-            width: 300,
-          ),
-          Text(
-            'Reports', 
-            style: TextStyle(
-              fontSize: 17.0,
-              color: Color(0xff5c001e)
-            ),
-          ),
-        ],
-      ),
-    ],
-  );
-}
-
 BottomNavigationBar buildBottomNav() {
   return BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -263,23 +293,23 @@ BottomNavigationBar buildBottomNav() {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today, color: Colors.white),
-            title: Text('Calendar', style: TextStyle(color: Colors.white),),
+            title: Text(''),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications, color: Colors.white),
-            title: Text('Notifications', style: TextStyle(color: Colors.white),),
+            title: Text(''),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.folder, color: Colors.white),
-            title: Text('Archive', style: TextStyle(color: Colors.white),),
+            title: Text(''),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.mail, color: Colors.white),
-            title: Text('Messages', style: TextStyle(color: Colors.white),),
+            title: Text(''),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.exit_to_app, color: Colors.white),
-            title: Text('Log Out', style: TextStyle(color: Colors.white),),
+            title: Text(''),
           ),
         ],
   );
