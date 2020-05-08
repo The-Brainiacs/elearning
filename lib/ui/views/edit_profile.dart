@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:elearning_app/ui/views/login_page.dart';
+import 'package:elearning_app/ui/views/user_details.dart';
 
 
 class EditProfilePage extends StatefulWidget {
@@ -12,6 +12,59 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
+
+    final profileInfoContainer = Container(
+      width: 360,
+      padding: EdgeInsets.all(10.0),
+      margin: EdgeInsets.symmetric(
+        vertical: 5.0,
+        horizontal: 20.0,
+      ),
+      child: Align(
+        child: Column(
+          children: <Widget>[
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage('assets/images/profile_picture.jpg'),
+            ),
+            Text(
+              'Muhammad Aiman Bin Azwak',
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Color(0xff5c001e),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              'A17CS0000',
+              style: TextStyle(
+                fontSize: 17.0,
+                color: Color(0xff5c001e),
+              ),
+            ),
+            FlatButton(
+              child: Text('Save Changes'),
+              color: Color(0xff5c001e),
+              textColor: Colors.white,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => UserDetailsPage()), //TODO
+                );
+              }
+            ),
+            SizedBox(
+              height: 10,
+              width: 300,
+              child: Divider(
+                color: Colors.black,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Edit Profile'),
@@ -20,7 +73,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            buildProfileInfoContainer(),
+            profileInfoContainer, 
             buildDetailsContainer(),
             Container(
               width: 360,
@@ -55,55 +108,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
       bottomNavigationBar: buildBottomNav(),
     );
   }
-}
-
-Container buildProfileInfoContainer() {
-  return Container(
-    width: 360,
-    padding: EdgeInsets.all(10.0),
-    margin: EdgeInsets.symmetric(
-      vertical: 5.0,
-      horizontal: 20.0,
-    ),
-    child: Align(
-      child: Column(
-        children: <Widget>[
-          CircleAvatar(
-            radius: 50,
-            backgroundImage: AssetImage('assets/images/profile_picture.jpg'),
-          ),
-          Text(
-            'Muhammad Aiman Bin Azwak',
-            style: TextStyle(
-              fontSize: 20.0,
-              color: Color(0xff5c001e),
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Text(
-            'A17CS0000',
-            style: TextStyle(
-              fontSize: 17.0,
-              color: Color(0xff5c001e),
-            ),
-          ),
-          FlatButton(
-            child: Text('Save Changes'),
-            color: Color(0xff5c001e),
-            textColor: Colors.white,
-            onPressed: () {/** */},
-          ),
-          SizedBox(
-            height: 10,
-            width: 300,
-            child: Divider(
-              color: Colors.black,
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
 }
 
 Container buildDetailsContainer() {
@@ -155,23 +159,45 @@ Column buildStudentDetails() {
             height: 5,
             width: 300,
           ),
-          Text(
-            'Email: ' + 'm.abu1998@gmmas.com', //TODO input changes
-            style: TextStyle(
-              fontSize: 17.0,
-              color: Color(0xff5c001e)
-            ),
+          Row(
+            children: <Widget>[
+              Text(
+                'Email: ', 
+                style: TextStyle(
+                  fontSize: 17.0,
+                  color: Color(0xff5c001e)
+                ),
+              ),
+              Expanded(child: 
+                TextField(
+                  decoration: const InputDecoration(hintText: 'm.huzaifah@gmail.com'), //TODO input changes
+                ),
+              ),
+            ],
           ),
           SizedBox(
             height: 5,
             width: 300,
           ),
-          Text(
-            'Phone Number: ' + 'call 911', //TODO input changes
-            style: TextStyle(
-              fontSize: 17.0,
-              color: Color(0xff5c001e)
-            ),
+          Row(
+            children: <Widget>[
+              Text(
+                'Phone: ', 
+                style: TextStyle(
+                  fontSize: 17.0,
+                  color: Color(0xff5c001e)
+                ),
+              ),
+              Expanded(child: 
+                TextField(
+                  decoration: const InputDecoration(hintText: '018293948'), //TODO input changes
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 5,
+            width: 300,
           ),
           SizedBox(
             height: 5,
@@ -194,23 +220,23 @@ BottomNavigationBar buildBottomNav() {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today, color: Colors.white),
-            title: Text('Calendar', style: TextStyle(color: Colors.white),),
+            title: Text(''),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications, color: Colors.white),
-            title: Text('Notifications', style: TextStyle(color: Colors.white),),
+            title: Text(''),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.folder, color: Colors.white),
-            title: Text('Archive', style: TextStyle(color: Colors.white),),
+            title: Text(''),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.mail, color: Colors.white),
-            title: Text('Messages', style: TextStyle(color: Colors.white),),
+            title: Text(''),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.exit_to_app, color: Colors.white),
-            title: Text('Log Out', style: TextStyle(color: Colors.white),),
+            title: Text(''),
           ),
         ],
   );
