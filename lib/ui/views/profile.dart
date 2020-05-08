@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:elearning_app/ui/views/login_page.dart';
+import 'package:elearning_app/ui/views/edit_profile.dart';
 
 
 class ProfilePage extends StatefulWidget {
@@ -12,6 +12,41 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
+    
+    final editProfileButton = FlatButton(
+      child: Text('Edit Profile'),
+      color: Color(0xff5c001e),
+      textColor: Colors.white,
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => EditProfilePage()),
+        );
+      }
+    );
+
+    final coursesContainer = Container( // Courses
+      width: 360,
+      padding: EdgeInsets.all(10.0),
+      margin: EdgeInsets.symmetric(
+        vertical: 10.0,
+        horizontal: 25.0,
+      ),
+      decoration: BoxDecoration(
+        color: Color(0xffEEE9EA),
+        border: Border.all(
+          color: Color(0xff5c001e),
+        ),
+        borderRadius: BorderRadius.all(
+          Radius.circular(5.0),
+        )
+      ),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: buildStudentCourses(),
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
@@ -20,18 +55,19 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            buildProfileInfoContainer(),
-            buildCoursesContainer(),
+            buildProfileInfoContainer(editProfileButton),
+            coursesContainer,
             buildDetailsContainer(),
           ]
-        )
+        ),
+        
       ),
       bottomNavigationBar: buildBottomNav(),
     );
   }
 }
 
-Container buildProfileInfoContainer() {
+Container buildProfileInfoContainer(FlatButton editProfileButton) {
   return Container(
     width: 360,
     padding: EdgeInsets.all(10.0),
@@ -61,6 +97,7 @@ Container buildProfileInfoContainer() {
               color: Color(0xff5c001e),
             ),
           ),
+          editProfileButton,
           SizedBox(
             height: 10,
             width: 300,
@@ -70,30 +107,6 @@ Container buildProfileInfoContainer() {
           ),
         ],
       ),
-    ),
-  );
-}
-
-Container buildCoursesContainer() {
-  return Container( // Courses
-    width: 360,
-    padding: EdgeInsets.all(10.0),
-    margin: EdgeInsets.symmetric(
-      vertical: 10.0,
-      horizontal: 25.0,
-    ),
-    decoration: BoxDecoration(
-      color: Color(0xffEEE9EA),
-      border: Border.all(
-        color: Color(0xff5c001e),
-      ),
-      borderRadius: BorderRadius.all(
-        Radius.circular(5.0),
-      )
-    ),
-    child: Align(
-      alignment: Alignment.centerLeft,
-      child: buildStudentCourses(),
     ),
   );
 }
