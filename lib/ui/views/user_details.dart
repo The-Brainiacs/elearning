@@ -50,7 +50,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ProfilePage(mockDataDashboard)), //TODO
+                  MaterialPageRoute(builder: (context) => ProfilePage(mockDataDashboard)), 
                 );
               }
             ),
@@ -163,7 +163,7 @@ Column buildStudentDetails() {
           Row(
             children: <Widget>[
               Text(
-                'Email: ' + 'm.huzaifah@gmail.com', //TODO
+                'Email: ' + 'm.huzaifah@gmail.com', //TODO GET
                 style: TextStyle(
                   fontSize: 17.0,
                   color: Color(0xff5c001e)
@@ -178,7 +178,7 @@ Column buildStudentDetails() {
           Row(
             children: <Widget>[
               Text(
-                'Phone: ' + '018293948', //TODO
+                'Phone: ' + '018293948', //TODO GET
                 style: TextStyle(
                   fontSize: 17.0,
                   color: Color(0xff5c001e)
