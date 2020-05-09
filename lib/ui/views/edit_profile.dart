@@ -84,7 +84,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             profileInfoContainer, 
-            buildDetailsContainer(widget.student.email, widget.student.phone, emailController, phoneController),
+            buildDetailsContainer(widget.student, emailController, phoneController),
             Container(
               width: 360,
               padding: EdgeInsets.all(10.0),
@@ -120,7 +120,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
 }
 
-Container buildDetailsContainer(String email, String phone, TextEditingController emailController, TextEditingController phoneController) {
+Container buildDetailsContainer(Student student, TextEditingController emailController, TextEditingController phoneController) {
   return Container( // Details
     width: 360,
     padding: EdgeInsets.all(10.0),
@@ -137,11 +137,11 @@ Container buildDetailsContainer(String email, String phone, TextEditingControlle
         Radius.circular(5.0),
       )
     ),
-    child: buildStudentDetails(email, phone, emailController, phoneController),
+    child: buildStudentDetails(student, emailController, phoneController),
   );
 }
 
-Column buildStudentDetails(String email, String phone, TextEditingController emailController, TextEditingController phoneController) {  
+Column buildStudentDetails(Student student, TextEditingController emailController, TextEditingController phoneController) {  
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -181,7 +181,7 @@ Column buildStudentDetails(String email, String phone, TextEditingController ema
               Expanded(child: 
                 TextField(
                   controller: emailController,
-                  decoration: InputDecoration(labelText: email), 
+                  decoration: InputDecoration(labelText: student.email), 
                 ),
               ),
             ],
@@ -202,7 +202,7 @@ Column buildStudentDetails(String email, String phone, TextEditingController ema
               Expanded(child: 
                 TextField(
                   controller: phoneController,
-                  decoration: InputDecoration(labelText: phone), 
+                  decoration: InputDecoration(labelText: student.phone), 
                 ),
               ),
             ],
