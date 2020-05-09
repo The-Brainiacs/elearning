@@ -51,10 +51,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
               child: Text('Save Changes'),
               color: Color(0xff5c001e),
               textColor: Colors.white,
-              onPressed: () {setState(() {
-                widget.student.email = emailController.text;
-                widget.student.phone = phoneController.text;
-              });
+              onPressed: () {
+                setState(() {
+                  widget.student.email = emailController.text;
+                  widget.student.phone = phoneController.text;
+                });
                 
                 Navigator.push(
                   context,
@@ -83,7 +84,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             profileInfoContainer, 
-            buildDetailsContainer(widget.student, emailController, phoneController),
+            buildDetailsContainer(widget.student.email, widget.student.phone, emailController, phoneController),
             Container(
               width: 360,
               padding: EdgeInsets.all(10.0),
@@ -119,7 +120,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
 }
 
-Container buildDetailsContainer(Student student, TextEditingController emailController, TextEditingController phoneController) {
+Container buildDetailsContainer(String email, String phone, TextEditingController emailController, TextEditingController phoneController) {
   return Container( // Details
     width: 360,
     padding: EdgeInsets.all(10.0),
@@ -136,11 +137,11 @@ Container buildDetailsContainer(Student student, TextEditingController emailCont
         Radius.circular(5.0),
       )
     ),
-    child: buildStudentDetails(student, emailController, phoneController),
+    child: buildStudentDetails(email, phone, emailController, phoneController),
   );
 }
 
-Column buildStudentDetails(Student student, TextEditingController emailController, TextEditingController phoneController) {
+Column buildStudentDetails(String email, String phone, TextEditingController emailController, TextEditingController phoneController) {  
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -171,7 +172,7 @@ Column buildStudentDetails(Student student, TextEditingController emailControlle
           Row(
             children: <Widget>[
               Text(
-                'Email: ', 
+                'Email: ' , 
                 style: TextStyle(
                   fontSize: 17.0,
                   color: Color(0xff5c001e)
@@ -180,7 +181,7 @@ Column buildStudentDetails(Student student, TextEditingController emailControlle
               Expanded(child: 
                 TextField(
                   controller: emailController,
-                  //decoration: const InputDecoration(prefix: Text(student.email)), 
+                  decoration: InputDecoration(labelText: email), 
                 ),
               ),
             ],
@@ -201,7 +202,7 @@ Column buildStudentDetails(Student student, TextEditingController emailControlle
               Expanded(child: 
                 TextField(
                   controller: phoneController,
-                  //decoration: const InputDecoration(hintText: '018293948'), //TODO input changes
+                  decoration: InputDecoration(labelText: phone), 
                 ),
               ),
             ],
