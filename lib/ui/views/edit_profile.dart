@@ -1,19 +1,20 @@
 import 'package:elearning_app/ui/models/student.dart';
 import 'package:flutter/material.dart';
-import 'package:elearning_app/ui/views/profile.dart';
-import 'package:elearning_app/ui/shared/dashboard_data.dart';
+import 'package:elearning_app/ui/views/user_details.dart';
 
 
-class UserDetailsPage extends StatefulWidget {
+class EditProfilePage extends StatefulWidget {
   final Student student;
-  UserDetailsPage(this.student);
+  EditProfilePage(this.student);
   @override
   State<StatefulWidget> createState() {
-    return _UserDetailsPageState();
+    return _EditProfilePageState();
   }
 }
 
-class _UserDetailsPageState extends State<UserDetailsPage> {
+class _EditProfilePageState extends State<EditProfilePage> {
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
   @override
   Widget build(BuildContext context) {
 
@@ -47,13 +48,17 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
               ),
             ),
             FlatButton(
-              child: Text('Profile'),
+              child: Text('Save Changes'),
               color: Color(0xff5c001e),
               textColor: Colors.white,
-              onPressed: () {
+              onPressed: () {setState(() {
+                widget.student.email = emailController.text;
+                widget.student.phone = phoneController.text;
+              });
+                
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ProfilePage(mockDataDashboard)), 
+                  MaterialPageRoute(builder: (context) => UserDetailsPage(mockStudent)),
                 );
               }
             ),
@@ -71,14 +76,14 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('User Details'),
+        title: Text('Edit Profile'),
       ),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             profileInfoContainer, 
-            buildDetailsContainer(widget.student.email, widget.student.phone),
+            buildDetailsContainer(widget.student, emailController, phoneController),
             Container(
               width: 360,
               padding: EdgeInsets.all(10.0),
@@ -114,7 +119,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
   }
 }
 
-Container buildDetailsContainer(String email, String phone) {
+Container buildDetailsContainer(Student student, TextEditingController emailController, TextEditingController phoneController) {
   return Container( // Details
     width: 360,
     padding: EdgeInsets.all(10.0),
@@ -131,11 +136,11 @@ Container buildDetailsContainer(String email, String phone) {
         Radius.circular(5.0),
       )
     ),
-    child: buildStudentDetails(email, phone),
+    child: buildStudentDetails(student, emailController, phoneController),
   );
 }
 
-Column buildStudentDetails(String email, String phone) {
+Column buildStudentDetails(Student student, TextEditingController emailController, TextEditingController phoneController) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -166,10 +171,16 @@ Column buildStudentDetails(String email, String phone) {
           Row(
             children: <Widget>[
               Text(
-                'Email: ' + email, 
+                'Email: ', 
                 style: TextStyle(
                   fontSize: 17.0,
                   color: Color(0xff5c001e)
+                ),
+              ),
+              Expanded(child: 
+                TextField(
+                  controller: emailController,
+                  //decoration: const InputDecoration(prefix: Text(student.email)), 
                 ),
               ),
             ],
@@ -181,10 +192,16 @@ Column buildStudentDetails(String email, String phone) {
           Row(
             children: <Widget>[
               Text(
-                'Phone: ' + phone, 
+                'Phone: ', 
                 style: TextStyle(
                   fontSize: 17.0,
                   color: Color(0xff5c001e)
+                ),
+              ),
+              Expanded(child: 
+                TextField(
+                  controller: phoneController,
+                  //decoration: const InputDecoration(hintText: '018293948'), //TODO input changes
                 ),
               ),
             ],
