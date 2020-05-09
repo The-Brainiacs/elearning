@@ -49,7 +49,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => UserDetailsPage()), //TODO
+                  MaterialPageRoute(builder: (context) => UserDetailsPage()),
                 );
               }
             ),
@@ -170,7 +170,7 @@ Column buildStudentDetails() {
               ),
               Expanded(child: 
                 TextField(
-                  decoration: const InputDecoration(hintText: 'm.huzaifah@gmail.com'), //TODO input changes
+                  decoration: const InputDecoration(hintText: 'm.huzaifah@gmail.com'), 
                 ),
               ),
             ],
@@ -190,7 +190,7 @@ Column buildStudentDetails() {
               ),
               Expanded(child: 
                 TextField(
-                  decoration: const InputDecoration(hintText: '018293948'), //TODO input changes
+                  decoration: const InputDecoration(hintText: '018293948'), 
                 ),
               ),
             ],

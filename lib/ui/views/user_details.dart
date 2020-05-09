@@ -163,7 +163,7 @@ Column buildStudentDetails() {
           Row(
             children: <Widget>[
               Text(
-                'Email: ' + 'm.huzaifah@gmail.com', //TODO GET
+                'Email: ' + 'm.huzaifah@gmail.com', 
                 style: TextStyle(
                   fontSize: 17.0,
                   color: Color(0xff5c001e)
@@ -178,7 +178,7 @@ Column buildStudentDetails() {
           Row(
             children: <Widget>[
               Text(
-                'Phone: ' + '018293948', //TODO GET
+                'Phone: ' + '018293948',
                 style: TextStyle(
                   fontSize: 17.0,
                   color: Color(0xff5c001e)
