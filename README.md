@@ -13,3 +13,8 @@ https://youtu.be/ubjIQ_ydbKo
 # About 
 Students have been using E-Learning as a platform to download notes, take quizzes, submit assignments. However, there are a lot of features in E-Learning that the students are not aware of. Currently, the E-Learning only available in web-based version and not mobile-based version. The notification feature in E-Learning is not noticeable as the students could only view when the students open the E-Learning. The group chat function is also not utilised by the students and the students need to create groups using WhatsApp or Telegram. The calendar that marks submissions or other important dates is not noticeable.
 
+For Project #3, we are applying Create and Delete method on Dashboard, Profile and Messages. In Dashboard,user able o view their courses and do submission for their assignment for respective course.
+
+In Profile, we added Edit Profile feature where students can update their phone number and email. These changes can be seen at User Details provided in the Profile page.
+
+Lastly, in Messages, we are able to send the messages to intended user by tapping to the add button.
