@@ -1,3 +1,4 @@
+import 'package:elearning_app/ui/models/student.dart';
 import 'package:flutter/material.dart';
 import 'package:elearning_app/ui/views/edit_profile.dart';
 import 'package:elearning_app/ui/shared/dashboard_data.dart';
@@ -102,7 +103,7 @@ class _ProfilePageState extends State<ProfilePage> {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => EditProfilePage()),
+          MaterialPageRoute(builder: (context) => EditProfilePage(mockStudent)),
         );
       }
     );
@@ -150,7 +151,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          UserDetailsPage()
+                          UserDetailsPage(mockStudent)
                   ),
                 ),
             ),

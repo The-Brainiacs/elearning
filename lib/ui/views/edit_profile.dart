@@ -1,8 +1,11 @@
+import 'package:elearning_app/ui/models/student.dart';
 import 'package:flutter/material.dart';
 import 'package:elearning_app/ui/views/user_details.dart';
 
 
 class EditProfilePage extends StatefulWidget {
+  final Student student;
+  EditProfilePage(this.student);
   @override
   State<StatefulWidget> createState() {
     return _EditProfilePageState();
@@ -10,6 +13,8 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
   @override
   Widget build(BuildContext context) {
 
@@ -46,10 +51,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
               child: Text('Save Changes'),
               color: Color(0xff5c001e),
               textColor: Colors.white,
-              onPressed: () {
+              onPressed: () {setState(() {
+                widget.student.email = emailController.text;
+                widget.student.phone = phoneController.text;
+              });
+                
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => UserDetailsPage()), //TODO
+                  MaterialPageRoute(builder: (context) => UserDetailsPage(mockStudent)),
                 );
               }
             ),
@@ -74,7 +83,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             profileInfoContainer, 
-            buildDetailsContainer(),
+            buildDetailsContainer(widget.student, emailController, phoneController),
             Container(
               width: 360,
               padding: EdgeInsets.all(10.0),
@@ -110,7 +119,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
 }
 
-Container buildDetailsContainer() {
+Container buildDetailsContainer(Student student, TextEditingController emailController, TextEditingController phoneController) {
   return Container( // Details
     width: 360,
     padding: EdgeInsets.all(10.0),
@@ -127,11 +136,11 @@ Container buildDetailsContainer() {
         Radius.circular(5.0),
       )
     ),
-    child: buildStudentDetails(),
+    child: buildStudentDetails(student, emailController, phoneController),
   );
 }
 
-Column buildStudentDetails() {
+Column buildStudentDetails(Student student, TextEditingController emailController, TextEditingController phoneController) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -170,7 +179,8 @@ Column buildStudentDetails() {
               ),
               Expanded(child: 
                 TextField(
-                  decoration: const InputDecoration(hintText: 'm.huzaifah@gmail.com'), //TODO input changes
+                  controller: emailController,
+                  //decoration: const InputDecoration(prefix: Text(student.email)), 
                 ),
               ),
             ],
@@ -190,7 +200,8 @@ Column buildStudentDetails() {
               ),
               Expanded(child: 
                 TextField(
-                  decoration: const InputDecoration(hintText: '018293948'), //TODO input changes
+                  controller: phoneController,
+                  //decoration: const InputDecoration(hintText: '018293948'), //TODO input changes
                 ),
               ),
             ],

@@ -1,9 +1,12 @@
+import 'package:elearning_app/ui/models/student.dart';
 import 'package:flutter/material.dart';
 import 'package:elearning_app/ui/views/profile.dart';
 import 'package:elearning_app/ui/shared/dashboard_data.dart';
 
 
 class UserDetailsPage extends StatefulWidget {
+  final Student student;
+  UserDetailsPage(this.student);
   @override
   State<StatefulWidget> createState() {
     return _UserDetailsPageState();
@@ -75,7 +78,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             profileInfoContainer, 
-            buildDetailsContainer(),
+            buildDetailsContainer(widget.student.email, widget.student.phone),
             Container(
               width: 360,
               padding: EdgeInsets.all(10.0),
@@ -111,7 +114,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
   }
 }
 
-Container buildDetailsContainer() {
+Container buildDetailsContainer(String email, String phone) {
   return Container( // Details
     width: 360,
     padding: EdgeInsets.all(10.0),
@@ -128,11 +131,11 @@ Container buildDetailsContainer() {
         Radius.circular(5.0),
       )
     ),
-    child: buildStudentDetails(),
+    child: buildStudentDetails(email, phone),
   );
 }
 
-Column buildStudentDetails() {
+Column buildStudentDetails(String email, String phone) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -163,7 +166,7 @@ Column buildStudentDetails() {
           Row(
             children: <Widget>[
               Text(
-                'Email: ' + 'm.huzaifah@gmail.com', //TODO GET
+                'Email: ' + email, 
                 style: TextStyle(
                   fontSize: 17.0,
                   color: Color(0xff5c001e)
@@ -178,7 +181,7 @@ Column buildStudentDetails() {
           Row(
             children: <Widget>[
               Text(
-                'Phone: ' + '018293948', //TODO GET
+                'Phone: ' + phone, //TODO GET
                 style: TextStyle(
                   fontSize: 17.0,
                   color: Color(0xff5c001e)
