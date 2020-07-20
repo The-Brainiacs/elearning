@@ -1,11 +1,11 @@
 
-@baseUrl = 'http://localhost:5001/backend-elearning/us-central1/api';
+@baseUrl = http://172.20.10.3:3000
 
 ### Get the list of msgs
 GET {{baseUrl}}/msgs
 
 ###  Getting a msg for a given id
-GET {{baseUrl}}/msgs/7hafVnkozwXR6u2world
+GET {{baseUrl}}/msgs/1
 
 ###  Add a new msg
 POST {{baseUrl}}/msgs
