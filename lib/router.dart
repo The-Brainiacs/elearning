@@ -24,7 +24,7 @@ class Router {
       case 'calendar':
         return MaterialPageRoute(builder: (_) => CalendarPage());
       case 'messages':
-        return MaterialPageRoute(builder: (_) => MessagesPage(mockData));
+        return MaterialPageRoute(builder: (_) => MessagesPage());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

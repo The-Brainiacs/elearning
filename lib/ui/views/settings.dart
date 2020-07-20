@@ -101,7 +101,7 @@ class _BodyLayoutState extends State<BodyLayout> {
         title: Text('Messages'),
         leading: Icon(Icons.message, color: Color(0xff5c001e)),
         onTap: () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MessagesPage(mockData))),
+            context, MaterialPageRoute(builder: (context) => MessagesPage())),
       ),
       ListTile(
         title: Text('Notifications'),
