@@ -1,18 +1,13 @@
-class MessageData {
-  String email;
-  String content;
+class Msg {
+  String id;
+  String name;
+  String textmsg;
 
-  MessageData(this.email, this.content);
-  MessageData.copy(MessageData from) : this(from.email, from.content);
+  Msg({this.id, this.name, this.textmsg});
+  Msg.fromJson(Map<String, dynamic> json)
+      : this(
+            id: json['id'], name: json['name'], textmsg: json['textmsg']);
+
+  Map<String, dynamic> toJson() =>
+      {'id': id, 'name': name, 'textmsg': textmsg};
 }
-
-List<MessageData> mockData = [
-  MessageData('Nur Amira', 'Meeting at 8'),
-  MessageData('Nur Amiraa', 'Meeting at 8'),
-  MessageData('Nur Amiraaa', 'Meeting at 8'),
-  MessageData('Nur Amiraaaa', 'Meeting at 8'),
-];
-
-
-
-
