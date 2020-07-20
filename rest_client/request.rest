@@ -1,0 +1,45 @@
+
+@baseUrl = 'http://localhost:5001/backend-elearning/us-central1/api';
+
+### Get the list of msgs
+GET {{baseUrl}}/msgs
+
+###  Getting a msg for a given id
+GET {{baseUrl}}/msgs/7hafVnkozwXR6u2world
+
+###  Add a new msg
+POST {{baseUrl}}/msgs
+Content-Type: application/json
+
+{
+    "name": "Bella",
+    "textmsg" : "hello bell"
+}
+
+### Update a msg partly
+PATCH {{baseUrl}}/msgs/7hafVnkozwXR6u2world
+Content-Type: application/json
+
+{
+        "textmsg" : "hello belllo"
+}
+
+###
+PATCH {{baseUrl}}/msgs/7hafVnkozwXR6u2world
+Content-Type: application/json
+
+{
+        "textmsg" : "heyy bella"
+}
+
+### Replace an existing msg entirely
+PUT {{baseUrl}}/msgs/7hafVnkozwXR6u2world
+Content-Type: application/json
+
+{
+    "name": "Icha",
+    "textmsg" : "ichallll",
+}
+
+### Delete a msg
+DELETE {{baseUrl}}/msgs/7hafVnkozwXR6u2world
