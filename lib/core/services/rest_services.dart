@@ -15,8 +15,7 @@ class RestService {
   RestService._constructor();
   //---------------------------- end of singleton implementation
 
-  static const String baseUrl =
-      'https://us-central1-ex4-firebase.cloudfunctions.net/api';
+  static const String baseUrl = 'http://localhost:3000/calendar';
 
   Future get(String endpoint) async {
     final response = await http.get('$baseUrl/$endpoint');

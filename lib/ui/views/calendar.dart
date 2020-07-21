@@ -1,24 +1,12 @@
+import 'package:elearning_app/core/services/calendar_services.dart';
 import 'package:elearning_app/ui/models/calendar_model.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 //import 'package:firebase/firebase.dart';
-import 'package:http/http.dart' as http;
 
 class CalendarPage extends StatefulWidget {
   @override
   _CalendarPageState createState() => _CalendarPageState();
-}
-
-Future<Calendar> createEvent(String date, String event) async {
-  final String apiUrl = "http://localhost:3000/calendar";
-  final response =
-      await http.post(apiUrl, body: {"date": date, "event": event});
-  if (response.statusCode == 201) {
-    final String responseString = response.body;
-    return calendarFromJson(responseString);
-  } else {
-    return null;
-  }
 }
 
 class _CalendarPageState extends State<CalendarPage> {
@@ -26,6 +14,9 @@ class _CalendarPageState extends State<CalendarPage> {
 
   DateTime datecontroller;
   TextEditingController descriptioncontroller = TextEditingController();
+
+  List<Calendar> list;
+  final dataService = CalendarService();
 
   CalendarController _controller;
   Map<DateTime, List<dynamic>> _events;
@@ -72,7 +63,8 @@ class _CalendarPageState extends State<CalendarPage> {
           DateTime date = DateTime.now();
           String description = descriptioncontroller.text;
 
-          Calendar eve = await createEvent(date.toIso8601String(), description);
+          Calendar eve = await dataService.createEvent(
+              date.toIso8601String(), description);
           setState(() {
             events = eve;
           });
@@ -134,21 +126,39 @@ class _CalendarPageState extends State<CalendarPage> {
 
   Container buildEvent() {
     return Container(
-      width: 380,
-      padding: EdgeInsets.all(10.0),
-      margin: EdgeInsets.symmetric(
-        vertical: 10.0,
-        horizontal: 25.0,
-      ),
-      decoration: BoxDecoration(
-          color: Colors.white10,
-          border: Border.all(
-            color: Color(0xff5c001e),
-          ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(5.0),
-          )),
-      child: buildEventDetails(),
+        width: 380,
+        padding: EdgeInsets.all(10.0),
+        margin: EdgeInsets.symmetric(
+          vertical: 10.0,
+          horizontal: 25.0,
+        ),
+        decoration: BoxDecoration(
+            color: Colors.white10,
+            border: Border.all(
+              color: Color(0xff5c001e),
+            ),
+            borderRadius: BorderRadius.all(
+              Radius.circular(5.0),
+            )),
+        child: Column(children: <Widget>[
+          buildEventDetails(),
+          buildDisplay(),
+        ]));
+  }
+
+  Column buildDisplay() {
+    return Column(
+      children: <Widget>[
+        FutureBuilder<List<Calendar>>(
+            future: dataService.displayEvent(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                list = snapshot.data;
+                new Text(datecontroller.toIso8601String());
+              }
+              return null;
+            })
+      ],
     );
   }
 
