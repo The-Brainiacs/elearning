@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 class MessagesPage extends StatefulWidget {
-  final List _msg;
-  MessagesPage(this._msg);
+ 
+  MessagesPage();
 
   @override
   State<StatefulWidget> createState() {
@@ -177,7 +177,7 @@ class _MessagesPageState extends State<MessagesPage> {
                       FloatingActionButton.extended(
                         label: const Text('Send'),
                         heroTag: null,
-                        onPressed: () => Navigator.of(context).pop(widget._msg),
+                        onPressed: () => Navigator.of(context).pop(),
                         // onPressed: () {
                         //   showDialog(
                         //     context: context,
