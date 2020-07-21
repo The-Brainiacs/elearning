@@ -1,13 +1,11 @@
 import 'package:elearning_app/ui/views/calendar.dart';
 import 'package:elearning_app/ui/models/message_data.dart';
-import 'package:elearning_app/ui/models/student.dart';
 import 'package:elearning_app/ui/views/messages.dart';
 import 'package:elearning_app/ui/views/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:elearning_app/ui/views/login_page.dart';
 import 'package:elearning_app/ui/views/profile.dart';
 import 'package:elearning_app/ui/views/settings.dart';
-import 'package:elearning_app/ui/shared/dashboard_data.dart';
 
 const String initialRoute = "login";
 

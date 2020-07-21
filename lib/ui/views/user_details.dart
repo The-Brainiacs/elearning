@@ -106,10 +106,11 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                 color: Color(0xff5c001e),
                 textColor: Colors.white,
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ProfilePage()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => ProfilePage()),
+                  // );
+                  Navigator.popUntil(context, ModalRoute.withName('/profile')); //TODO
                 }),
             SizedBox(
               height: 10,
