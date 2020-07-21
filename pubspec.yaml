@@ -20,6 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^4.0.4 
+  http: ^0.12.2
 
   firebase_messaging: ^4.0.0+3
   percent_indicator: ^2.1.1

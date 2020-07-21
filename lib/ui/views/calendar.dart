@@ -1,13 +1,32 @@
+import 'package:elearning_app/ui/models/calendar_model.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 //import 'package:firebase/firebase.dart';
+import 'package:http/http.dart' as http;
 
 class CalendarPage extends StatefulWidget {
   @override
   _CalendarPageState createState() => _CalendarPageState();
 }
 
+Future<Calendar> createEvent(String date, String event) async {
+  final String apiUrl = "http://localhost:3000/calendar";
+  final response =
+      await http.post(apiUrl, body: {"date": date, "event": event});
+  if (response.statusCode == 201) {
+    final String responseString = response.body;
+    return calendarFromJson(responseString);
+  } else {
+    return null;
+  }
+}
+
 class _CalendarPageState extends State<CalendarPage> {
+  Calendar events;
+
+  DateTime datecontroller;
+  TextEditingController descriptioncontroller = TextEditingController();
+
   CalendarController _controller;
   Map<DateTime, List<dynamic>> _events;
 
@@ -49,7 +68,15 @@ class _CalendarPageState extends State<CalendarPage> {
         backgroundColor: Colors.orange,
         label: Text('Add Event'),
         icon: Icon(Icons.check_circle),
-        onPressed: () {},
+        onPressed: () async {
+          DateTime date = DateTime.now();
+          String description = descriptioncontroller.text;
+
+          Calendar eve = await createEvent(date.toIso8601String(), description);
+          setState(() {
+            events = eve;
+          });
+        },
       ),
       bottomNavigationBar: buildBottomNav(),
     );
@@ -149,17 +176,40 @@ class _CalendarPageState extends State<CalendarPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'MAP Project #2 Deliverable (9 May 2020)',
+              'Date',
               style: TextStyle(fontSize: 12.0, color: Color(0xff5c001e)),
             ),
+            RaisedButton(
+                child: Text(datecontroller.toString()),
+                color: Colors.amberAccent,
+                onPressed: () {
+                  showDatePicker(
+                          context: context,
+                          initialDate: datecontroller == null
+                              ? DateTime.now()
+                              : datecontroller,
+                          firstDate: DateTime(2020),
+                          lastDate: DateTime(2022))
+                      .then((date) {
+                    setState(() {
+                      datecontroller = date;
+                    });
+                  });
+                }),
             SizedBox(
               height: 5,
               width: 300,
             ),
             Text(
-              'TCS Assignment 1 (10 May 2020)',
+              'Description',
               style: TextStyle(fontSize: 12.0, color: Color(0xff5c001e)),
             ),
+            TextField(
+              controller: descriptioncontroller,
+            ),
+            events == null
+                ? Container()
+                : Text("Event ${events.description} created successfully")
           ],
         ),
       ],
