@@ -12,7 +12,7 @@ class CalendarPage extends StatefulWidget {
 class _CalendarPageState extends State<CalendarPage> {
   Calendar events;
 
-  DateTime datecontroller;
+  String datecontroller;
   TextEditingController descriptioncontroller = TextEditingController();
 
   List<Calendar> list;
@@ -45,6 +45,34 @@ class _CalendarPageState extends State<CalendarPage> {
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder<List<Calendar>>(
+        future: dataService.displayEvent(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            list = snapshot.data; //List
+            print(list[0].description);
+            return _buildMainScreen();
+          }
+          return _buildFetchingDataScreen();
+        });
+  }
+
+  Scaffold _buildFetchingDataScreen() {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            CircularProgressIndicator(),
+            SizedBox(height: 50),
+            Text('Fetching data... Please wait'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Scaffold _buildMainScreen() {
     return Scaffold(
       appBar: AppBar(
         title: Text('Calendar'),
@@ -64,7 +92,7 @@ class _CalendarPageState extends State<CalendarPage> {
           String description = descriptioncontroller.text;
 
           Calendar eve = await dataService.createEvent(
-              date.toIso8601String(), description);
+              list.length.toString(), date.toIso8601String(), description);
           setState(() {
             events = eve;
           });
@@ -142,24 +170,8 @@ class _CalendarPageState extends State<CalendarPage> {
             )),
         child: Column(children: <Widget>[
           buildEventDetails(),
-          buildDisplay(),
+          Text('${list[0].description}'),
         ]));
-  }
-
-  Column buildDisplay() {
-    return Column(
-      children: <Widget>[
-        FutureBuilder<List<Calendar>>(
-            future: dataService.displayEvent(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                list = snapshot.data;
-                new Text(datecontroller.toIso8601String());
-              }
-              return null;
-            })
-      ],
-    );
   }
 
   Column buildEventDetails() {
@@ -202,7 +214,7 @@ class _CalendarPageState extends State<CalendarPage> {
                           lastDate: DateTime(2022))
                       .then((date) {
                     setState(() {
-                      datecontroller = date;
+                      datecontroller = date.toIso8601String();
                     });
                   });
                 }),

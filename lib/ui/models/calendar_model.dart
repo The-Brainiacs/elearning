@@ -12,7 +12,7 @@ class Calendar {
   });
 
   String id;
-  DateTime date;
+  String date;
   String description;
 
   factory Calendar.fromJson(Map<String, dynamic> json) => Calendar(

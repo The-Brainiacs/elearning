@@ -1,0 +1,60 @@
+
+@baseUrl = http://192.168.0.111:3000
+### Example of endpoints for basic CRUD operations.
+#    Later in your submission, leave only the one that you actually use and remove others from this file.
+
+
+### Get the list of quotes
+GET {{baseUrl}}/calendar
+
+###
+GET {{baseUrl}}/quotes/7hafVnkozwXR6u2world
+
+###
+POST {{baseUrl}}/calendar
+Content-Type: application/json
+
+{
+    "id": "2",
+    "date": "22-07-2020",
+    "description" : "Rest",
+  
+}
+
+### Update a quote partly
+PATCH {{baseUrl}}/quotes/7hafVnkozwXR6u2world
+Content-Type: application/json
+
+{
+        "like" : 10
+}
+
+###
+PATCH {{baseUrl}}/quotes/7hafVnkozwXR6u2world
+Content-Type: application/json
+
+{
+        "dislike" : 2
+}
+
+### Replace an existing quote entirely
+PUT {{baseUrl}}/quotes/7hafVnkozwXR6u2world
+Content-Type: application/json
+
+{
+    "data": "Programming is not everything",
+    "like" : 5,
+    "dislike" : 5
+}
+
+### Delete a quote
+DELETE {{baseUrl}}/quotes/7hafVnkozwXR6u2world
+
+### Thumb up (or Like) - Update the 'like' attribute by inreasing by 1
+PATCH {{baseUrl}}/quotes/9helloKozwXR6u2world/like
+
+###
+PATCH {{baseUrl}}/like/9helloKozwXR6u2world
+
+###
+PATCH {{baseUrl}}/quotes/9helloKozwXR6u2world?vote=like

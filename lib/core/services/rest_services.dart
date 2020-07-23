@@ -15,7 +15,7 @@ class RestService {
   RestService._constructor();
   //---------------------------- end of singleton implementation
 
-  static const String baseUrl = 'http://localhost:3000/calendar';
+  static const String baseUrl = 'http://192.168.0.111:3000';
 
   Future get(String endpoint) async {
     final response = await http.get('$baseUrl/$endpoint');
