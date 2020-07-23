@@ -65,7 +65,7 @@ class _CalendarPageState extends State<CalendarPage> {
           children: <Widget>[
             CircularProgressIndicator(),
             SizedBox(height: 50),
-            Text('Fetching data... Please wait'),
+            Text('Loading'),
           ],
         ),
       ),
@@ -88,14 +88,16 @@ class _CalendarPageState extends State<CalendarPage> {
         label: Text('Add Event'),
         icon: Icon(Icons.check_circle),
         onPressed: () async {
-          DateTime date = DateTime.now();
-          String description = descriptioncontroller.text;
-
-          Calendar eve = await dataService.createEvent(
-              date.toIso8601String(), description);
-          setState(() {
-            events = eve;
-          });
+          //final String date = datecontroller;
+          //final String description = descriptioncontroller.text;
+          // final eve = await dataService.createEvent(
+          //     date: datecontroller, description: descriptioncontroller.text);
+          //setState(() => list.add(eve));
+          final newParty = await dataService.createEvent(
+              party: Calendar(
+                  date: datecontroller,
+                  description: descriptioncontroller.text));
+          setState(() => list.add(newParty));
         },
       ),
       bottomNavigationBar: buildBottomNav(),
@@ -240,8 +242,11 @@ class _CalendarPageState extends State<CalendarPage> {
 
   Column buildDisplayDetail() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
+        SizedBox(
+          height: 10,
+          width: 400,
+        ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -259,17 +264,10 @@ class _CalendarPageState extends State<CalendarPage> {
           width: 400,
         ),
         Column(
-          children: <Widget>[
-            Text(
-              'Event: ${list[0].description}',
-              style: TextStyle(fontSize: 12.0, color: Color(0xff5c001e)),
-            ),
-            Column(
-              children: List.generate(list.length, (index) {
-                return Text(list[index].toString());
-              }),
-            )
-          ],
+          children: List.generate(list.length, (index) {
+            return Text(list[index].description.toString(),
+                textAlign: TextAlign.left);
+          }),
         )
       ],
     );

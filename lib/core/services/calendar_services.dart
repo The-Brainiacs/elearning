@@ -20,16 +20,15 @@ class CalendarService {
         .toList();
   }
 
-  Future<Calendar> createEvent(String date, String description) async {
-    final response = await rest.post('calendar', data: {
-      'date': date,
-      'description': description,
-    });
-    if (response.statusCode == 201) {
-      final String responseString = response.body;
-      return calendarFromJson(responseString);
-    } else {
-      return null;
-    }
+  // Future<Calendar> createEvent({String date, String description}) async {
+  //   final json = await rest.post('calendar', data: {
+  //     'date': date,
+  //     'description': description,
+  //   });
+  //   return Calendar.fromJson(json);
+  // }
+  Future<Calendar> createEvent({Calendar party}) async {
+    final json = await rest.post('calendar', data: party);
+    return Calendar.fromJson(json);
   }
 }

@@ -15,7 +15,7 @@ POST {{baseUrl}}/calendar
 Content-Type: application/json
 
 {
-    "date": "22-07-2020",
+    "date": "23-07-2020",
     "description" : "Rest",
   
 }
