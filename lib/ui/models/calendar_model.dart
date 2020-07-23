@@ -6,23 +6,23 @@ String calendarToJson(Calendar data) => json.encode(data.toJson());
 
 class Calendar {
   Calendar({
-    this.id,
+    //this.id,
     this.date,
     this.description,
   });
 
-  String id;
+  //String id;
   String date;
   String description;
 
   factory Calendar.fromJson(Map<String, dynamic> json) => Calendar(
-        id: json["id"],
+        //id: json["id"],
         date: json["date"],
         description: json["description"],
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
+        //"id": id,
         "date": date,
         "description": description,
       };

@@ -4,7 +4,7 @@
 #    Later in your submission, leave only the one that you actually use and remove others from this file.
 
 
-### Get the list of quotes
+### Get the calendar event
 GET {{baseUrl}}/calendar
 
 ###
@@ -15,7 +15,6 @@ POST {{baseUrl}}/calendar
 Content-Type: application/json
 
 {
-    "id": "2",
     "date": "22-07-2020",
     "description" : "Rest",
   

@@ -20,10 +20,8 @@ class CalendarService {
         .toList();
   }
 
-  Future<Calendar> createEvent(
-      String id, String date, String description) async {
+  Future<Calendar> createEvent(String date, String description) async {
     final response = await rest.post('calendar', data: {
-      'id': id,
       'date': date,
       'description': description,
     });

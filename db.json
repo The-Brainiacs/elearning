@@ -1,9 +1,11 @@
 {
   "calendar": [{
-    "id" : "1",
     "date" : "22-07-2020",
     "description" : "MAP Final Deliverable"
-  }
-    
+  },
+  {
+    "date":"26-07-2020",
+    "description" : "FYP Final Draft"
+  } 
   ]
 }

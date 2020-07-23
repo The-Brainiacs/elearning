@@ -50,7 +50,7 @@ class _CalendarPageState extends State<CalendarPage> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             list = snapshot.data; //List
-            print(list[0].description);
+            //print(list[0].description),
             return _buildMainScreen();
           }
           return _buildFetchingDataScreen();
@@ -92,7 +92,7 @@ class _CalendarPageState extends State<CalendarPage> {
           String description = descriptioncontroller.text;
 
           Calendar eve = await dataService.createEvent(
-              list.length.toString(), date.toIso8601String(), description);
+              date.toIso8601String(), description);
           setState(() {
             events = eve;
           });
@@ -170,7 +170,7 @@ class _CalendarPageState extends State<CalendarPage> {
             )),
         child: Column(children: <Widget>[
           buildEventDetails(),
-          Text('${list[0].description}'),
+          buildDisplayDetail(),
         ]));
   }
 
@@ -182,7 +182,7 @@ class _CalendarPageState extends State<CalendarPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Text(
-              'Upcoming Event',
+              'Add Event',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 15.0,
@@ -234,6 +234,43 @@ class _CalendarPageState extends State<CalendarPage> {
                 : Text("Event ${events.description} created successfully")
           ],
         ),
+      ],
+    );
+  }
+
+  Column buildDisplayDetail() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              'Upcoming Event',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15.0,
+                  color: Color(0xff5c001e)),
+            )
+          ],
+        ),
+        SizedBox(
+          height: 20,
+          width: 400,
+        ),
+        Column(
+          children: <Widget>[
+            Text(
+              'Event: ${list[0].description}',
+              style: TextStyle(fontSize: 12.0, color: Color(0xff5c001e)),
+            ),
+            Column(
+              children: List.generate(list.length, (index) {
+                return Text(list[index].toString());
+              }),
+            )
+          ],
+        )
       ],
     );
   }
