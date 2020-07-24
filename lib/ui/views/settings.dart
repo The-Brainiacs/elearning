@@ -1,4 +1,4 @@
-import 'package:elearning_app/ui/shared/dashboard_data.dart';
+//import 'package:elearning_app/ui/shared/dashboard_data.dart';
 import 'package:elearning_app/ui/views/calendar.dart';
 import 'package:elearning_app/ui/views/messages.dart';
 import 'package:elearning_app/ui/views/notifications.dart';
@@ -29,11 +29,10 @@ class _SettingsPageState extends State<SettingsPage> {
             tabs: [
               GestureDetector(
                 onTap: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginPage())),
+                    MaterialPageRoute(builder: (context) => LoginPage())),
                 child: Tab(
                   text: 'Logout',
                   icon: Icon(Icons.arrow_downward),
-                  
                 ),
               )
             ],
@@ -72,9 +71,7 @@ class _BodyLayoutState extends State<BodyLayout> {
         title: Text('Dashboard'),
         leading: Icon(Icons.folder, color: Color(0xff5c001e)),
         onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => DashboardPage())),
+            context, MaterialPageRoute(builder: (context) => DashboardPage())),
       ),
       ListTile(
         title: Text('Profile'),
@@ -87,13 +84,12 @@ class _BodyLayoutState extends State<BodyLayout> {
         leading: Icon(Icons.message, color: Color(0xff5c001e)),
         onTap: () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => MessagesPage())),
-
       ),
       ListTile(
         title: Text('Notifications'),
         leading: Icon(Icons.notifications, color: Color(0xff5c001e)),
-        onTap: () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => NotificationsPage())),
+        onTap: () => Navigator.push(context,
+            MaterialPageRoute(builder: (context) => NotificationsPage())),
       ),
       ListTile(
         title: Text('Private Files'),

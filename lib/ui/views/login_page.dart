@@ -1,6 +1,7 @@
 //import 'dart:html';
 
 //import 'package:elearning_app/ui/views/settings.dart';
+import 'package:elearning_app/ui/views/settings.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -58,7 +59,13 @@ class _LoginPageState extends State<LoginPage> {
           //   Navigator.push(context, 'SettingsPage()');
           // },
 
-          onPressed: () {},
+          onPressed: () {
+            if (usercontroller.text == 'Abu' &&
+                passwordcontroller.text == '123') {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => SettingsPage()));
+            }
+          },
 
           color: Color(0xff5c001e),
           child: Text('Log In', style: TextStyle(color: Colors.white)),
