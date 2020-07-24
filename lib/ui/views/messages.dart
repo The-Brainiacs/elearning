@@ -46,7 +46,6 @@ class _MessagesPageState extends State<MessagesPage> {
         itemBuilder: (context, index) {
           final _msg = _msgs[index];
           return ListTile(
-            // trailing: _buildThumbButtons(index),
             title: Text(_msg.name,
                 textAlign: TextAlign.justify, style: TextStyle(fontSize: 16)),
             subtitle: Text(_msg.textmsg,
@@ -129,8 +128,6 @@ class _MessagesPageState extends State<MessagesPage> {
                           ),
                           onSubmitted: (text) {
                             ctrl2.add(text);
-                            // _controller.clear();
-                            // _controller2.clear();
                             setState(() {});
                           },
                         ),
@@ -138,14 +135,13 @@ class _MessagesPageState extends State<MessagesPage> {
                         FloatingActionButton.extended(
                           label: const Text('Send'),
                           heroTag: null,
-                          // onPressed: () => Navigator.of(context).pop(),
                           onPressed: () async {
                             final newMsg = await dataService.createMsg(
                               msg: Msg(
                                   id: " ",
                                   name: _controller.text,
                                   textmsg: _controller2.text),
-                            ); // Update server. Id for the new Todo will be given by the server
+                            );
 
                             setState(() => _msgs.add(newMsg)); // Update UI
                           },
@@ -160,15 +156,6 @@ class _MessagesPageState extends State<MessagesPage> {
         ),
       ),
 
-      //     FloatingActionButton(
-      //    child: Icon(Icons.refresh),
-
-      //       onPressed: () {
-      //         setState(() {
-      //           dataService.getAllMsgs();
-      //         });
-      //       },
-      // ),
 
       bottomNavigationBar: buildBottomNav(),
     );
