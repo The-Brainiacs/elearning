@@ -1,12 +1,13 @@
 class Msg {
+  String id;
   String name;
   String textmsg;
 
-  Msg({this.name, this.textmsg});
+  Msg({this.id, this.name, this.textmsg});
   Msg.fromJson(Map<String, dynamic> json)
       : this(
-            name: json['name'], textmsg: json['textmsg']);
+            id: json['id'], name: json['name'], textmsg: json['textmsg']);
 
   Map<String, dynamic> toJson() =>
-      {'name': name, 'textmsg': textmsg};
+      {'id': id, 'name': name, 'textmsg': textmsg};
 }

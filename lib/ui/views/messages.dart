@@ -4,14 +4,14 @@ import 'package:elearning_app/ui/models/message_data.dart';
 import 'package:flutter/material.dart';
 
 class MessagesPage extends StatefulWidget {
- @override
+  @override
   _MessagesPageState createState() => _MessagesPageState();
 }
 
 class _MessagesPageState extends State<MessagesPage> {
   List<Msg> _msgs;
   final dataService = MsgDataService();
-  
+
   final TextEditingController _controller = new TextEditingController();
   final TextEditingController _controller2 = new TextEditingController();
 
@@ -20,7 +20,6 @@ class _MessagesPageState extends State<MessagesPage> {
 
   int counter = 0;
 
-  
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Msg>>(
@@ -49,132 +48,127 @@ class _MessagesPageState extends State<MessagesPage> {
           return ListTile(
             // trailing: _buildThumbButtons(index),
             title: Text(_msg.name,
-                textAlign: TextAlign.justify, style: TextStyle(fontSize: 12)),
+                textAlign: TextAlign.justify, style: TextStyle(fontSize: 16)),
             subtitle: Text(_msg.textmsg,
-                textAlign: TextAlign.justify, style: TextStyle(fontSize: 12)),
-            //  onLongPress: () async {
-            //   await dataService.deleteMsg(
-            //       id: _msgs[index].id); // Delete todo at the database
-            //   setState(() => _msgs.removeAt(index)); // Update UI
-            // },
+                textAlign: TextAlign.justify, style: TextStyle(fontSize: 14)),
+            onLongPress: () async {
+              await dataService.deleteMsg(
+                  id: _msgs[index].id); // Delete todo at the database
+              setState(() => _msgs.removeAt(index)); // Update UI
+            },
           );
         },
       ),
-      floatingActionButton: Row(
-        children: <Widget>[
-        
-        
-        FloatingActionButton.extended(
-      label: const Text('Add new message'),
-      heroTag: null,
-      onPressed: () {
-        showDialog(
-          context: context,
-          child: Column(
-            children: <Widget>[
-              new AlertDialog(
-                title: Column(
-                  children: <Widget>[
-                    SizedBox(height: 40),
-                    new Text(
-                      'Recipient : ',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    new TextField(
-                      
-                      controller: _controller,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.person),
-                          filled: true,
-                          fillColor: Colors.lightBlue[50],
-                          errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.black,
-                            ),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          hintText: "example : Misha Omar",
-                          errorText: "*required",
-                          errorStyle: TextStyle(
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold)),
-                      onSubmitted: (text) {
-                        ctrl1.add(text);
-                        
-                        setState(() {});
-                      },
-                      
-                    ),
-                    SizedBox(height: 20),
-                    new Text(
-                      'Messages : ',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    new TextField(
 
-                      // maxLines: 4,
-                      controller: _controller2,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.message),
-                        filled: true,
-                        fillColor: Colors.lightBlue[50],
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.black,
+      floatingActionButton: SafeArea(
+        left: false,
+        child: FloatingActionButton.extended(
+          label: const Text('Add new message'),
+          heroTag: null,
+          onPressed: () {
+            showDialog(
+              context: context,
+              child: Column(
+                children: <Widget>[
+                  new AlertDialog(
+                    title: Column(
+                      children: <Widget>[
+                        SizedBox(height: 40),
+                        new Text(
+                          'Recipient : ',
+                          style: TextStyle(
+                            fontSize: 20,
                           ),
-                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                        hintText: "Your messages",
-                      ),
-                      onSubmitted: (text) {
-                        ctrl2.add(text);
-                        // _controller.clear();
-                        // _controller2.clear();
-                        setState(() {});
-                      },
-                    ),
-                    SizedBox(height: 30),
-                    FloatingActionButton.extended(
-                      label: const Text('Send'),
-                      heroTag: null,
-                      // onPressed: () => Navigator.of(context).pop(),
-                      onPressed: () async {
-          final newMsg = await dataService.createMsg(
-            msg: Msg(name: _controller.text,
-            textmsg: _controller2.text),
-          ); // Update server. Id for the new Todo will be given by the server
+                        SizedBox(height: 10),
+                        new TextField(
+                          controller: _controller,
+                          decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.person),
+                              filled: true,
+                              fillColor: Colors.lightBlue[50],
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              hintText: "example : Misha Omar",
+                              errorText: "*required",
+                              errorStyle: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold)),
+                          onSubmitted: (text) {
+                            ctrl1.add(text);
 
-          setState(() => _msgs.add(newMsg)); // Update UI
-        },
-                      
+                            setState(() {});
+                          },
+                        ),
+                        SizedBox(height: 20),
+                        new Text(
+                          'Messages : ',
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        new TextField(
+                          // maxLines: 4,
+                          controller: _controller2,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.message),
+                            filled: true,
+                            fillColor: Colors.lightBlue[50],
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.black,
+                              ),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            hintText: "Your messages",
+                          ),
+                          onSubmitted: (text) {
+                            ctrl2.add(text);
+                            // _controller.clear();
+                            // _controller2.clear();
+                            setState(() {});
+                          },
+                        ),
+                        SizedBox(height: 30),
+                        FloatingActionButton.extended(
+                          label: const Text('Send'),
+                          heroTag: null,
+                          // onPressed: () => Navigator.of(context).pop(),
+                          onPressed: () async {
+                            final newMsg = await dataService.createMsg(
+                              msg: Msg(
+                                  id: " ",
+                                  name: _controller.text,
+                                  textmsg: _controller2.text),
+                            ); // Update server. Id for the new Todo will be given by the server
+
+                            setState(() => _msgs.add(newMsg)); // Update UI
+                          },
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        );
-      },
-    ),
-
-          FloatingActionButton(
-         child: Icon(Icons.refresh),
-
-
-            onPressed: () {
-              setState(() {
-                dataService.getAllMsgs();
-              });
-            },
+            );
+          },
+        ),
       ),
-        ],
-      ),
+
+      //     FloatingActionButton(
+      //    child: Icon(Icons.refresh),
+
+      //       onPressed: () {
+      //         setState(() {
+      //           dataService.getAllMsgs();
+      //         });
+      //       },
+      // ),
 
       bottomNavigationBar: buildBottomNav(),
     );
