@@ -1,7 +1,5 @@
 import 'package:elearning_app/ui/models/student.dart';
 import 'package:flutter/material.dart';
-import 'package:elearning_app/ui/views/profile.dart';
-import 'package:elearning_app/ui/views/login_page.dart';
 import 'package:elearning_app/ui/views/settings.dart';
 import 'package:elearning_app/services/profile_data_service.dart';
 
@@ -120,7 +118,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                     MaterialPageRoute(builder: (context) => SettingsPage())
                   );
 
-                  // Navigator.popUntil(context, ModalRoute.withName('/profile')); //TODO
+                  // Navigator.popUntil(context, ModalRoute.withName('/profile')); 
                 }),
             SizedBox(
               height: 10,

@@ -74,7 +74,7 @@ class _BodyLayoutState extends State<BodyLayout> {
         onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => DashboardPage(mockDataDashboard))),
+                            builder: (context) => DashboardPage())),
       ),
       ListTile(
         title: Text('Profile'),

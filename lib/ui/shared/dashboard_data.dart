@@ -9,30 +9,22 @@ class Assignment {
   Assignment.fromJson(Map<String, dynamic> json)
       : this(
             title: json['title'], status: json['status']);
+  
+  Map<String, dynamic> toJson() =>
+      {'title': title, 'status': status};
 
 }
 
 class Course {
+
+  String id;
   String title;
   String lecturer;
   String pictPath;
-  List<Assignment> assignment = [];
+  List<Assignment> assignment;
   // int progress = calProg(assignment);
 
-  Course({this.title, this.lecturer,this.pictPath,this.assignment});
-
-//   double get prog{
-//   int counter = 0;
-
-//   for(int i;i<assignment.length;i++){
-//     if (assignment[i].status){
-//       counter++;
-//     }
-  
-//   }
-//   if (counter>0){return (counter/assignment.length);}
-//   else {return 0;}
-// } //end get  prog
+  Course({this.id,this.title, this.lecturer,this.pictPath,this.assignment});
 
 double get prog => assignment.length > 0
       ? (assignment.fold(0, (sum, item) => item.status ? sum + 1 : sum) /
@@ -42,15 +34,18 @@ double get prog => assignment.length > 0
 
 Course.copy(Course from)
       : this(
-            title: from.title, lecturer: from.lecturer, pictPath: from.pictPath,
+            id:from.id, title: from.title, lecturer: from.lecturer, pictPath: from.pictPath,
             assignment: from.assignment.map((assignment) => Assignment.copy(assignment)).toList());
 
 Course.fromJson(Map<String, dynamic> json)
       : this(
-            title: json['title'], lecturer: json['lecturer'], pictPath: json['pictPath']);
+            id:json['id'], title: json['title'], lecturer: json['lecturer'], pictPath: json['pictPath'],
+            assignment: (json['assignment'] as List)
+                .map((item) => Assignment.fromJson(item))
+                .toList());
 
 Map<String, dynamic> toJson() =>
-    {'title': title, 'lecturer': lecturer, 'pictPath': pictPath};
+    {'id':id, 'title': title, 'lecturer': lecturer, 'pictPath': pictPath, 'assignment': assignment};
 
 }
 
@@ -95,4 +90,3 @@ final  mockDataDashboard = <Course>[
     ])
 
 ];
-

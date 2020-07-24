@@ -1,12 +1,15 @@
+import 'package:elearning_app/services/dashboardService.dart';
 import 'package:elearning_app/ui/shared/dashboard_data.dart';
 import 'package:flutter/material.dart';
 
 
 class AssignmentPage extends StatefulWidget {
-  //final String course;
-  final Course course;
+  // final Course course;
+  final String id;
+   final Course course;
 
-  AssignmentPage(this.course);
+  AssignmentPage(this.course,this.id);
+
 
   @override
   State<StatefulWidget> createState() {
@@ -15,6 +18,8 @@ class AssignmentPage extends StatefulWidget {
 }
 
 class _AssignmentPageState extends State<AssignmentPage> {
+  Course course;
+  final dataService = DataService();
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +42,19 @@ class _AssignmentPageState extends State<AssignmentPage> {
           
           child: CheckboxListTile(
           title: Text(widget.course.assignment[index].title,), 
-          onChanged: (bool value) {
-              setState(() { widget.course.assignment[index].status? widget.course.assignment[index].status = false : widget.course.assignment[index].status = true;  });
-            }, 
           value: widget.course.assignment[index].status,
+          onChanged: (bool value){
+              setState(() { 
+                widget.course.assignment[index].status = value;
+                // if (course.assignment[index].status){
+                //   course.assignment[index].status =false;
+                // }else{
+                //   course.assignment[index].status = true;
+                // }
+                // course.assignment[index].status? course.assignment[index].status = false : course.assignment[index].status = true;
+                  });
+            }, 
+         
           //onTap: ,
         ),),
         separatorBuilder: (context, index) => Divider(
@@ -52,7 +66,13 @@ class _AssignmentPageState extends State<AssignmentPage> {
           children: <Widget>[
             FlatButton(
               color: Color(0xff5c001e),
-              onPressed: () => Navigator.pop(context, widget.course),
+              onPressed: () async{
+                // Course newCourse;
+                course = await dataService.updateAssignment(id: widget.course.id, assignment: widget.course.assignment);
+                Navigator.pop(context);
+              // final dataService = DataService();
+              // Future<Course> updateCourse = dataService.updateAssignment({widget.course.id, widget.course.assignment});
+              },
               child:Text('Submit', style: TextStyle(color: Colors.white),),
             ),
           
@@ -65,6 +85,7 @@ class _AssignmentPageState extends State<AssignmentPage> {
       bottomNavigationBar: buildBottomNav(),
     );
   }
+
 }
 
 

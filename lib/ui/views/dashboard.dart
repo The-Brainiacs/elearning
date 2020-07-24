@@ -1,5 +1,7 @@
 // import 'dart:html';
 
+import 'package:elearning_app/services/dashboardService.dart';
+// import 'package:elearning_app/ui/models/student.dart';
 import 'package:elearning_app/ui/shared/dashboard_data.dart';
 import 'package:flutter/material.dart';
 
@@ -9,9 +11,9 @@ import 'assigment.dart';
 
 
 class DashboardPage extends StatefulWidget {
-  final List <Course> course;
+  // final List <Course> course;
 
-  DashboardPage(this.course);
+  // DashboardPage(this.course);
 
   @override
   State<StatefulWidget> createState() {
@@ -21,24 +23,44 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
 
+  List<Course> course;
+  final dataService = DataService();
+
+
 void _navigate(int index) async {
     final Course updateCourse = await Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) =>
-                AssignmentPage(Course.copy(widget.course[index]))));
+                AssignmentPage(Course.copy(course[index]),course[index].id)));
 
     if (updateCourse != null) {
-      setState(() => widget.course[index] = updateCourse);
+      setState(() => course[index] = updateCourse);
     }
   }
+  
 
-  @override
+@override
   Widget build(BuildContext context) {
+    return FutureBuilder<List<Course>>(
+        future: dataService.getAllCourses(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            course = snapshot.data;
+            print(course[0].assignment[0].title);
+            // assessments = snapshot.data.assessments;
+            return _buildMainScreen();
+          }
+
+          return _buildFetchingDataScreen();
+        });
+  }
+
+  Scaffold _buildMainScreen() {
     return Scaffold(
       appBar: buildAppBar(),
       body: ListView.separated(
-        itemCount: widget.course.length,
+        itemCount: course.length,
         itemBuilder: (context, index) => Card (
       
           color: Color(0xffFFA500).withOpacity(0.5),
@@ -52,22 +74,22 @@ void _navigate(int index) async {
               backgroundColor: Color(0xffFDCF09),
               child: CircleAvatar(
                 radius: 30,
-                backgroundImage: AssetImage(widget.course[index].pictPath),
+                backgroundImage: AssetImage(course[index].pictPath),
               ),
             ),
-          title: Text(widget.course[index].title,), 
-          subtitle: Text(widget.course[index].lecturer),
+          title: Text(course[index].title), 
+          subtitle: Text(course[index].lecturer),
           trailing: Icon(Icons.arrow_forward_ios),
-          onTap: () => _navigate(index),
-        ),
+          onTap: ()=> _navigate(index),
+            ),
         LinearPercentIndicator(
                 
                 width: MediaQuery.of(context).size.width -8,
                 animation: true,
                 lineHeight: 15.0,
                 animationDuration: 2000,
-                percent: (widget.course[index].prog.round())/100,
-                center: Text( widget.course[index].prog.round().toString() + '%',  style: TextStyle(color: Colors.white)),
+                percent: (course[index].prog.round())/100,
+                center: Text('Progress: '+course[index].prog.round().toString() + '%',  style: TextStyle(color: Colors.white)),
                 linearStrokeCap: LinearStrokeCap.roundAll,
                 progressColor: Color(0xff5c001e).withOpacity(1),
               ),
@@ -77,6 +99,21 @@ void _navigate(int index) async {
         ),
       ),
       bottomNavigationBar: buildBottomNav(),
+    );
+  }
+
+   Scaffold _buildFetchingDataScreen() {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            CircularProgressIndicator(),
+            SizedBox(height: 50),
+            Text('Fetching data in progress'),
+          ],
+        ),
+      ),
     );
   }
 }
