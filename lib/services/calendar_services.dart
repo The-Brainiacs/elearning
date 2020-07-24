@@ -1,6 +1,5 @@
-import 'package:elearning_app/core/services/rest_services.dart';
+import 'package:elearning_app/services/rest_service.dart';
 import 'package:elearning_app/ui/models/calendar_model.dart';
-// import 'package:http/http.dart' as http;
 
 class CalendarService {
   static final CalendarService _instance = CalendarService._constructor();

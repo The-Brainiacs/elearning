@@ -1,4 +1,4 @@
-import 'package:elearning_app/core/services/calendar_services.dart';
+import 'package:elearning_app/services/calendar_services.dart';
 import 'package:elearning_app/ui/models/calendar_model.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -225,9 +225,6 @@ class _CalendarPageState extends State<CalendarPage> {
             TextField(
               controller: descriptioncontroller,
             ),
-            // events == null
-            //     ? Container()
-            //     : Text("Event ${events.description} created successfully")
           ],
         ),
       ],

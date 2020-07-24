@@ -3,8 +3,6 @@ import 'package:http/http.dart' as http;
 import '../ui/models/message_data.dart';
 import './rest_service.dart';
 
-
-
 class MsgDataService{
 
   static final MsgDataService _instance = MsgDataService._constructor();
@@ -17,12 +15,7 @@ class MsgDataService{
 
  static const String baseUrl =
  'https://us-central1-elearning-910d5.cloudfunctions.net/api';
-      //  'https://us-central1-salsabila-exercise4.cloudfunctions.net/api';
-      //  'http://localhost:5001/salsabila-exercise4/us-central1/api';
-      // 'http://172.20.10.3:3000';
-
-
-
+ 
   Future<List<Msg>> getAllMsgs() async {
     final listJson = await rest.get('msgs');
 

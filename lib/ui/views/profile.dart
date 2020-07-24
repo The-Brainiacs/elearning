@@ -2,7 +2,7 @@ import 'package:elearning_app/ui/models/student.dart';
 import 'package:flutter/material.dart';
 import 'package:elearning_app/ui/views/edit_profile.dart';
 import 'package:elearning_app/ui/views/dashboard.dart';
-import 'package:elearning_app/ui/shared/dashboard_data.dart';
+import 'package:elearning_app/ui/models/dashboard_data.dart';
 import 'package:elearning_app/ui/views/user_details.dart';
 
 import 'package:elearning_app/services/profile_data_service.dart';
@@ -19,7 +19,7 @@ class _ProfilePageState extends State<ProfilePage> {
   List<Course> _course;
   List<Student> _student;
 
-  final dataService = StudentDataService(); 
+  final dataService = StudentDataService();
 
   @override
   Widget build(BuildContext context) {
@@ -89,8 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => UserDetailsPage()),
+                MaterialPageRoute(builder: (context) => UserDetailsPage()),
               ),
             ),
             SizedBox(
@@ -133,8 +132,7 @@ class _ProfilePageState extends State<ProfilePage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) => EditProfilePage()), 
+            MaterialPageRoute(builder: (context) => EditProfilePage()),
           );
         });
   }
@@ -181,13 +179,12 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => DashboardPage()),
+                MaterialPageRoute(builder: (context) => DashboardPage()),
               ),
             ),
             InkWell(
               child: Text(
-                '+' + (_course.length-2).toString() + ' more', //Course length
+                '+' + (_course.length - 2).toString() + ' more', //Course length
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18.0,
@@ -195,8 +192,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => DashboardPage()),
+                MaterialPageRoute(builder: (context) => DashboardPage()),
               ),
             ),
           ],

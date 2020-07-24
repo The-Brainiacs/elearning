@@ -1,13 +1,11 @@
 // import 'dart:convert';
 
-
 // import '../core/services/rest_services.dart';
 import './rest_service.dart';
 
-
 // import '../ui/models/student.dart';
 // import '../core/services/rest_services.dart';
-import '../ui/shared/dashboard_data.dart';
+import '../ui/models/dashboard_data.dart';
 
 // QuoteDataService is a wrapper class implmenting calls for CRUD operations on Quote endpoints.
 //  The class is implemented using the Singleton design pattern.
@@ -31,8 +29,6 @@ class DataService {
   // Tho REST calls below, 1) to get all quotes and 2). to delete a quote
   //  are given for examples to guide you writing the other REST calls.
 
-  
-
   Future<List<Course>> getAllCourses() async {
     final listJson = await rest.get('courses');
 
@@ -51,12 +47,9 @@ class DataService {
 
   Future<Assignment> updateAssignmentStatus({int id, bool status}) async {
     final json = await rest.patch('assignment/$id', data: {'status': status});
-    
 
     return Assignment.fromJson(json);
   }
-
-  
 
   Future<Course> getCourse(int id) async {
     // final json = await rest.get('students/$id');
@@ -65,14 +58,11 @@ class DataService {
     return Course.fromJson(json);
   }
 
-  
-
-  
-
-  Future<Course> updateAssignment({String id, List<Assignment> assignment}) async {
-  // Future<Student> updateStudent({String id, Student student}) async {
+  Future<Course> updateAssignment(
+      {String id, List<Assignment> assignment}) async {
+    // Future<Student> updateStudent({String id, Student student}) async {
     // final json = await rest.patch('students/$id', data: {
-      // String ljson = jsonEncode(assignment);
+    // String ljson = jsonEncode(assignment);
     final json = await rest.patch('courses/$id', data: {
       'assignment': assignment,
     });

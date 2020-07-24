@@ -1,8 +1,5 @@
-# @baseUrl = https://us-central1-ex4-firebase.cloudfunctions.net/api
+
 @baseUrl = https://us-central1-elearning-910d5.cloudfunctions.net/api
-# @baseUrl = http://192.168.0.157:3000
-### Example of endpoints for basic CRUD operations.
-#    Later in your submission, leave only the one that you actually use and remove others from this file.
 
 
 ### Get the list of students
@@ -20,46 +17,6 @@ Content-Type: application/json
     "phone" : "01111111"
 }
 
-### Update a quote partly
-PATCH {{baseUrl}}/quotes/NKWy8rZpL1HWOB2Jnl3f
-Content-Type: application/json
-
-{
-        "like" : 10
-}
-
-###
-PATCH {{baseUrl}}/quotes/NKWy8rZpL1HWOB2Jnl3f
-Content-Type: application/json
-
-{
-        "dislike" : 2
-}
-
-### Replace an existing quote entirely
-PUT {{baseUrl}}/quotes/NKWy8rZpL1HWOB2Jnl3f
-Content-Type: application/json
-
-{
-    "data": "Programming is not everything",
-    "like" : 5,
-    "dislike" : 5
-}
-
-### Delete a quote
-DELETE {{baseUrl}}/quotes/NKWy8rZpL1HWOB2Jnl3f
-
-### Thumb up (or Like) - Update the 'like' attribute by inreasing by 1
-PATCH {{baseUrl}}/quotes/SYGBgxzLVguLbJqjJIUr/like
-
-###
-PATCH {{baseUrl}}/like/SYGBgxzLVguLbJqjJIUr
-
-###
-PATCH {{baseUrl}}/quotes/SYGBgxzLVguLbJqjJIUr?vote=like
-
-
-@baseUrl =  https://us-central1-elearning-910d5.cloudfunctions.net/api
 
 ### Get the list of msgs
 GET {{baseUrl}}/msgs
@@ -103,3 +60,15 @@ Content-Type: application/json
 
 ### Delete a msg
 DELETE {{baseUrl}}/msgs/r8YlBetUqKDcZKeoek1u
+
+### Get the calendar event
+GET {{baseUrl}}/calendar
+
+###
+POST {{baseUrl}}/calendar
+Content-Type: application/json
+
+{
+    "date": "23-07-2020",
+    "description" : "Rest"
+}
