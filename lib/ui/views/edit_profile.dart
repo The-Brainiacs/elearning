@@ -11,7 +11,7 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-  Student _student;
+  List<Student> _student;
 
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
@@ -20,8 +20,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Student>(
-        future: dataService.getStudent(),
+    return FutureBuilder<List<Student>>(
+        future: dataService.getAllStudent(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             _student = snapshot.data;
@@ -90,7 +90,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               backgroundImage: AssetImage('assets/images/profile_picture.jpg'),
             ),
             Text(
-              _student.name, //Name
+              _student[0].name, //Name
               style: TextStyle(
                 fontSize: 20.0,
                 color: Color(0xff5c001e),
@@ -98,7 +98,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
             ),
             Text(
-              _student.matric, //Matric
+              _student[0].matric, //Matric
               style: TextStyle(
                 fontSize: 17.0,
                 color: Color(0xff5c001e),
@@ -114,19 +114,20 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   if (emailController.text == '' &&
                       phoneController.text == '') {
                     _newStudent = await dataService.updateStudent(
-                        email: _student.email, phone: _student.phone);
+                        id: _student[0].id, email: _student[0].email, phone: _student[0].phone);
                   } else if (emailController.text == '') {
                     _newStudent = await dataService.updateStudent(
-                        email: _student.email, phone: phoneController.text);
+                        id: _student[0].id, email: _student[0].email, phone: phoneController.text);
                   } else if (phoneController.text == '') {
                     _newStudent = await dataService.updateStudent(
-                        email: emailController.text, phone: _student.phone);
+                        id: _student[0].id, email: emailController.text, phone: _student[0].phone);
                   } else
                     _newStudent = await dataService.updateStudent(
+                        id: _student[0].id, 
                         email: emailController.text,
                         phone: phoneController.text);
 
-                  setState(() => _student = _newStudent);
+                  setState(() => _student[0] = _newStudent);
 
                   Navigator.push(
                     context,
@@ -204,7 +205,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   child: TextField(
                     controller: emailController,
                     decoration:
-                        InputDecoration(labelText: _student.email), // Email
+                        InputDecoration(labelText: _student[0].email), // Email
                   ),
                 ),
               ],
@@ -223,7 +224,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   child: TextField(
                     controller: phoneController,
                     decoration:
-                        InputDecoration(labelText: _student.phone), //Phone
+                        InputDecoration(labelText: _student[0].phone), //Phone
                   ),
                 ),
               ],

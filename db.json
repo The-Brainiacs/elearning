@@ -36,13 +36,8 @@
       "status": false
     }
   ],
-  "students": {
-    "name": "Muhammad Huzaifah Bin Azwak",
-    "matric": "A17CS1331",
-    "email": "huzaifah@gmail.com",
-    "phone": "011545648"
-  },
-  "studentss": [
+  
+  "students": [
     {
       "id": 1,
       "name": "Muhammad Huzaifah Bin 1",

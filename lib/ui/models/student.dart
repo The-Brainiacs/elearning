@@ -3,17 +3,16 @@ class Student {
   String matric;
   String email;
   String phone;
+  String id;
 
-  Student({this.name, this.matric, this.email, this.phone});
+  Student({this.name, this.matric, this.email, this.phone, this.id});
 
   Student.fromJson(Map<String, dynamic> json)
       : this(
-            name: json['name'], matric: json['matric'], email: json['email'], phone: json['phone']);
+            name: json['name'], matric: json['matric'], email: json['email'], phone: json['phone'], id: json['id'].toString());
 
   Map<String, dynamic> toJson() =>
-      {'name': name, 'matric': matric, 'email': email, 'phone': phone};
-
-  Student.copy(Student from) : this(email: from.email, phone: from.phone);
+      {'name': name, 'matric': matric, 'email': email, 'phone': phone, 'id': id};
 
 }
 

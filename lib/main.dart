@@ -15,17 +15,6 @@ class App extends StatefulWidget {
 }
 
 class _MyAppState extends State<App> {
-
-  // final FirebaseMessaging _messaging = FirebaseMessaging();
-
-  // @override
-  // void initState() {
-  //   super.initState();
-
-  //   _messaging.getToken().then((token) {
-  //     print(token);
-  //   });
-  // }
   
  @override
  Widget build(BuildContext context) {

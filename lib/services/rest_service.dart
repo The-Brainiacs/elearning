@@ -16,8 +16,8 @@ class RestService {
   //---------------------------- end of singleton implementation
 
   static const String baseUrl =
-      // 'https://us-central1-ex4-firebase.cloudfunctions.net/api';
-      'http://192.168.0.157:3000';
+      // 'http://192.168.0.157:3000';
+      'https://us-central1-elearning-910d5.cloudfunctions.net/api';
 
   Future get(String endpoint) async {
     final response = await http.get('$baseUrl/$endpoint');

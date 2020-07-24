@@ -40,17 +40,17 @@ class StudentDataService {
         .toList();
   }
 
-  Future<Student> getStudent() async {
-    // final json = await rest.get('students/$id');
-    final json = await rest.get('students');
+  Future<Student> getStudent({String id}) async {
+    final json = await rest.get('students/$id');
+    // final json = await rest.get('students');
 
     return Student.fromJson(json);
   }
 
-  Future<Student> updateStudent({String email, String phone}) async {
+  Future<Student> updateStudent({String id, String email, String phone}) async {
   // Future<Student> updateStudent({String id, Student student}) async {
-    // final json = await rest.patch('students/$id', data: {
-    final json = await rest.patch('students', data: {
+    final json = await rest.patch('students/$id', data: {
+    // final json = await rest.patch('students', data: {
       'email': email,
       'phone': phone,
     });

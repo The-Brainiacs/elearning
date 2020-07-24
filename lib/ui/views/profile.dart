@@ -17,14 +17,14 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   //list course
   List<Course> _course;
-  Student _student;
+  List<Student> _student;
 
   final dataService = StudentDataService(); 
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Student>(
-        future: dataService.getStudent(),
+    return FutureBuilder<List<Student>>(
+        future: dataService.getAllStudent(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             _student = snapshot.data;
@@ -265,7 +265,7 @@ class _ProfilePageState extends State<ProfilePage> {
               backgroundImage: AssetImage('assets/images/profile_picture.jpg'),
             ),
             Text(
-              _student.name, // Name
+              _student[0].name, // Name
               style: TextStyle(
                 fontSize: 20.0,
                 color: Color(0xff5c001e),
@@ -273,7 +273,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             Text(
-              _student.matric, // Matric
+              _student[0].matric, // Matric
               style: TextStyle(
                 fontSize: 17.0,
                 color: Color(0xff5c001e),

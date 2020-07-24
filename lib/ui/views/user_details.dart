@@ -1,6 +1,8 @@
 import 'package:elearning_app/ui/models/student.dart';
 import 'package:flutter/material.dart';
 import 'package:elearning_app/ui/views/profile.dart';
+import 'package:elearning_app/ui/views/login_page.dart';
+import 'package:elearning_app/ui/views/settings.dart';
 import 'package:elearning_app/services/profile_data_service.dart';
 
 class UserDetailsPage extends StatefulWidget {
@@ -11,14 +13,14 @@ class UserDetailsPage extends StatefulWidget {
 }
 
 class _UserDetailsPageState extends State<UserDetailsPage> {
-  Student _student;
+  List<Student> _student;
 
   final dataService = StudentDataService();
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Student>(
-        future: dataService.getStudent(),
+    return FutureBuilder<List<Student>>(
+        future: dataService.getAllStudent(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             _student = snapshot.data;
@@ -87,7 +89,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
               backgroundImage: AssetImage('assets/images/profile_picture.jpg'),
             ),
             Text(
-              _student.name,
+              _student[0].name,
               style: TextStyle(
                 fontSize: 20.0,
                 color: Color(0xff5c001e),
@@ -95,22 +97,30 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
               ),
             ),
             Text(
-              _student.matric,
+              _student[0].matric,
               style: TextStyle(
                 fontSize: 17.0,
                 color: Color(0xff5c001e),
               ),
             ),
             FlatButton(
-                child: Text('Profile'),
+                child: Text('Back to Settings'),
                 color: Color(0xff5c001e),
                 textColor: Colors.white,
-                onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => ProfilePage()),
-                  // );
-                  Navigator.popUntil(context, ModalRoute.withName('/profile')); //TODO
+                onPressed: 
+                // () {
+                //   Navigator.push(
+                //     context,
+                //     MaterialPageRoute(builder: (context) => ProfilePage()),
+                //   );
+
+                  () {Navigator.pushReplacement(
+                    context,
+                    // MaterialPageRoute(builder: (context) => LoginPage()),
+                    MaterialPageRoute(builder: (context) => SettingsPage())
+                  );
+
+                  // Navigator.popUntil(context, ModalRoute.withName('/profile')); //TODO
                 }),
             SizedBox(
               height: 10,
@@ -176,7 +186,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
             Row(
               children: <Widget>[
                 Text(
-                  'Email: ' + _student.email,
+                  'Email: ' + _student[0].email,
                   style: TextStyle(fontSize: 17.0, color: Color(0xff5c001e)),
                 ),
               ],
@@ -188,7 +198,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
             Row(
               children: <Widget>[
                 Text(
-                  'Phone: ' + _student.phone,
+                  'Phone: ' + _student[0].phone,
                   style: TextStyle(fontSize: 17.0, color: Color(0xff5c001e)),
                 ),
               ],

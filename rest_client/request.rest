@@ -1,22 +1,23 @@
 # @baseUrl = https://us-central1-ex4-firebase.cloudfunctions.net/api
-@baseUrl = http://192.168.0.157:3000
+@baseUrl = https://us-central1-elearning-910d5.cloudfunctions.net/api
+# @baseUrl = http://192.168.0.157:3000
 ### Example of endpoints for basic CRUD operations.
 #    Later in your submission, leave only the one that you actually use and remove others from this file.
 
 
-### Get the list of quotes
+### Get the list of students
 GET {{baseUrl}}/students
 
-###  Getting a quote for a given id
-GET {{baseUrl}}/quotes/IM08kcYelARMk2PdUpab
+###  Getting a student for a given id
+GET {{baseUrl}}/students/KKQ8GpJQQhbWRwbpYql6
 
-###  Add a new quote
-PATCH {{baseUrl}}/students
+###  Edit profile
+PATCH {{baseUrl}}/students/KKQ8GpJQQhbWRwbpYql6
 Content-Type: application/json
 
 {
-    "email": "t2112312y",
-    "phone" : "asdwa"
+    "email": "abuedit@gmail",
+    "phone" : "01111111"
 }
 
 ### Update a quote partly
