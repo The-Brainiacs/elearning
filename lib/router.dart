@@ -1,5 +1,4 @@
 import 'package:elearning_app/ui/views/calendar.dart';
-import 'package:elearning_app/ui/models/message_data.dart';
 import 'package:elearning_app/ui/views/messages.dart';
 import 'package:elearning_app/ui/views/notifications.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,7 @@ class Router {
       case 'calendar':
         return MaterialPageRoute(builder: (_) => CalendarPage());
       case 'messages':
-        return MaterialPageRoute(builder: (_) => MessagesPage(mockData));
+        return MaterialPageRoute(builder: (_) => MessagesPage());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
