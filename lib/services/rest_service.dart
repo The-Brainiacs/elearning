@@ -1,9 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-// RestService is a wrapper class implmenting for REST API calls.
-//  The class is implemented using the Singleton design pattern.
-//  i.e. this class will only be instantiated once
 
 class RestService {
   //------- Here is how we implement 'Singleton pattern' in Dart --------

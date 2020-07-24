@@ -1,6 +1,5 @@
 import 'package:elearning_app/ui/shared/dashboard_data.dart';
 import 'package:elearning_app/ui/views/calendar.dart';
-import 'package:elearning_app/ui/models/message_data.dart';
 import 'package:elearning_app/ui/views/messages.dart';
 import 'package:elearning_app/ui/views/notifications.dart';
 import 'package:flutter/material.dart';
@@ -18,10 +17,6 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      // onPressed: () => Navigator.push(
-      //                   context,
-      //                   MaterialPageRoute(
-      //                       builder: (context) => LoginPage())),
       length: 1,
       initialIndex: 0,
       child: Scaffold(
@@ -64,16 +59,6 @@ AppBar buildAppBar() {
   );
 }
 
-// class ImageAsset  extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     AssetImage assetImage = AssetImage('images\LOGO-UTM.png');
-//     Image image = Image(image: assetImage);
-//     return Container(
-//       child: image,
-//     );
-//   }
-// }
 class BodyLayout extends StatefulWidget {
   @override
   _BodyLayoutState createState() => _BodyLayoutState();
@@ -101,7 +86,8 @@ class _BodyLayoutState extends State<BodyLayout> {
         title: Text('Messages'),
         leading: Icon(Icons.message, color: Color(0xff5c001e)),
         onTap: () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MessagesPage(mockData))),
+            context, MaterialPageRoute(builder: (context) => MessagesPage())),
+
       ),
       ListTile(
         title: Text('Notifications'),
