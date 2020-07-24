@@ -6,6 +6,10 @@ class Assignment {
 
   Assignment.copy(Assignment from) : this(title: from.title, status: from.status);
 
+  Assignment.fromJson(Map<String, dynamic> json)
+      : this(
+            title: json['title'], status: json['status']);
+
 }
 
 class Course {
@@ -40,7 +44,16 @@ Course.copy(Course from)
       : this(
             title: from.title, lecturer: from.lecturer, pictPath: from.pictPath,
             assignment: from.assignment.map((assignment) => Assignment.copy(assignment)).toList());
+
+Course.fromJson(Map<String, dynamic> json)
+      : this(
+            title: json['title'], lecturer: json['lecturer'], pictPath: json['pictPath']);
+
+Map<String, dynamic> toJson() =>
+    {'title': title, 'lecturer': lecturer, 'pictPath': pictPath};
+
 }
+
 
 final  mockDataDashboard = <Course>[
   Course(

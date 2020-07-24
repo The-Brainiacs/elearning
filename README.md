@@ -19,3 +19,4 @@ For Project #3, we are applying Create and Delete method on Dashboard, Profile a
 In Profile, we added Edit Profile feature where students can update their phone number and email. These changes can be seen at User Details provided in the Profile page.
 
 Lastly, in Messages, we are able to send the messages to intended user by tapping to the add button.
+

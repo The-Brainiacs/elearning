@@ -1,11 +1,9 @@
 import 'package:elearning_app/ui/models/student.dart';
 import 'package:flutter/material.dart';
 import 'package:elearning_app/ui/views/user_details.dart';
-
+import 'package:elearning_app/services/profile_data_service.dart';
 
 class EditProfilePage extends StatefulWidget {
-  final Student student;
-  EditProfilePage(this.student);
   @override
   State<StatefulWidget> createState() {
     return _EditProfilePageState();
@@ -13,12 +11,71 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
+  List<Student> _student;
+
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
+
+  final dataService = StudentDataService();
+
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder<List<Student>>(
+        future: dataService.getAllStudent(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            _student = snapshot.data;
+            return _buildMainScreen();
+          }
+          return _buildFetchingDataScreen();
+        });
+  }
 
-    final profileInfoContainer = Container(
+  Widget _buildMainScreen() {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Edit Profile'),
+      ),
+      body: SafeArea(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              buildProfileInfoContainer(),
+              buildDetailsContainer(),
+              Container(
+                width: 360,
+                padding: EdgeInsets.all(10.0),
+                margin: EdgeInsets.symmetric(
+                  vertical: 5.0,
+                  horizontal: 20.0,
+                ),
+                child: Align(
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        '*Changes in Student\'s Name and Matric Number must be made by School\'s Admin',
+                        style: TextStyle(
+                          fontSize: 12.0,
+                          color: Color(0xff5c001e),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                        width: 300,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ]),
+      ),
+      bottomNavigationBar: buildBottomNav(),
+    );
+  }
+
+  Widget buildProfileInfoContainer() {
+    return Container(
       width: 360,
       padding: EdgeInsets.all(10.0),
       margin: EdgeInsets.symmetric(
@@ -33,7 +90,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               backgroundImage: AssetImage('assets/images/profile_picture.jpg'),
             ),
             Text(
-              'Muhammad Aiman Bin Azwak',
+              _student[0].name, //Name
               style: TextStyle(
                 fontSize: 20.0,
                 color: Color(0xff5c001e),
@@ -41,28 +98,42 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
             ),
             Text(
-              'A17CS0000',
+              _student[0].matric, //Matric
               style: TextStyle(
                 fontSize: 17.0,
                 color: Color(0xff5c001e),
               ),
             ),
             FlatButton(
-              child: Text('Save Changes'),
-              color: Color(0xff5c001e),
-              textColor: Colors.white,
-              onPressed: () {
-                setState(() {
-                  widget.student.email = emailController.text;
-                  widget.student.phone = phoneController.text;
-                });
-                
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => UserDetailsPage(mockStudent)),
-                );
-              }
-            ),
+                child: Text('Save Changes'),
+                color: Color(0xff5c001e),
+                textColor: Colors.white,
+                onPressed: () async {
+                  Student _newStudent;
+
+                  if (emailController.text == '' &&
+                      phoneController.text == '') {
+                    _newStudent = await dataService.updateStudent(
+                        id: _student[0].id, email: _student[0].email, phone: _student[0].phone);
+                  } else if (emailController.text == '') {
+                    _newStudent = await dataService.updateStudent(
+                        id: _student[0].id, email: _student[0].email, phone: phoneController.text);
+                  } else if (phoneController.text == '') {
+                    _newStudent = await dataService.updateStudent(
+                        id: _student[0].id, email: emailController.text, phone: _student[0].phone);
+                  } else
+                    _newStudent = await dataService.updateStudent(
+                        id: _student[0].id, 
+                        email: emailController.text,
+                        phone: phoneController.text);
+
+                  setState(() => _student[0] = _newStudent);
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UserDetailsPage()),
+                  );
+                }),
             SizedBox(
               height: 10,
               width: 300,
@@ -74,182 +145,150 @@ class _EditProfilePageState extends State<EditProfilePage> {
         ),
       ),
     );
+  }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Edit Profile'),
+  Container buildDetailsContainer() {
+    return Container(
+      // Details
+      width: 360,
+      padding: EdgeInsets.all(10.0),
+      margin: EdgeInsets.symmetric(
+        vertical: 10.0,
+        horizontal: 25.0,
       ),
-      body: SafeArea(
+      decoration: BoxDecoration(
+          color: Color(0xffEEE9EA),
+          border: Border.all(
+            color: Color(0xff5c001e),
+          ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(5.0),
+          )),
+      child: buildStudentDetails(),
+    );
+  }
+
+  Column buildStudentDetails() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              'User Details',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 19.0,
+                  color: Color(0xff5c001e)),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 5,
+          width: 300,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              height: 5,
+              width: 300,
+            ),
+            Row(
+              children: <Widget>[
+                Text(
+                  'Email: ',
+                  style: TextStyle(fontSize: 17.0, color: Color(0xff5c001e)),
+                ),
+                Expanded(
+                  child: TextField(
+                    controller: emailController,
+                    decoration:
+                        InputDecoration(labelText: _student[0].email), // Email
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 5,
+              width: 300,
+            ),
+            Row(
+              children: <Widget>[
+                Text(
+                  'Phone: ',
+                  style: TextStyle(fontSize: 17.0, color: Color(0xff5c001e)),
+                ),
+                Expanded(
+                  child: TextField(
+                    controller: phoneController,
+                    decoration:
+                        InputDecoration(labelText: _student[0].phone), //Phone
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 5,
+              width: 300,
+            ),
+            SizedBox(
+              height: 5,
+              width: 300,
+            ),
+            SizedBox(
+              height: 5,
+              width: 300,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  BottomNavigationBar buildBottomNav() {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: Color(0xff5c001e),
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.calendar_today, color: Colors.white),
+          title: Text(''),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.notifications, color: Colors.white),
+          title: Text(''),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.folder, color: Colors.white),
+          title: Text(''),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.mail, color: Colors.white),
+          title: Text(''),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.exit_to_app, color: Colors.white),
+          title: Text(''),
+        ),
+      ],
+    );
+  }
+
+  // The fetching screen (loading)
+  Scaffold _buildFetchingDataScreen() {
+    return Scaffold(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            profileInfoContainer, 
-            buildDetailsContainer(widget.student, emailController, phoneController),
-            Container(
-              width: 360,
-              padding: EdgeInsets.all(10.0),
-              margin: EdgeInsets.symmetric(
-                vertical: 5.0,
-                horizontal: 20.0,
-              ),
-              child: Align(
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      '*Changes in Student\'s Name and Matric Number must be made by School\'s Admin',
-                      style: TextStyle(
-                        fontSize: 12.0,
-                        color: Color(0xff5c001e),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                      width: 300,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ]
+            CircularProgressIndicator(),
+            SizedBox(height: 50),
+            Text('Fetching data... Please wait'),
+          ],
         ),
-        
       ),
-      bottomNavigationBar: buildBottomNav(),
     );
   }
-}
-
-Container buildDetailsContainer(Student student, TextEditingController emailController, TextEditingController phoneController) {
-  return Container( // Details
-    width: 360,
-    padding: EdgeInsets.all(10.0),
-    margin: EdgeInsets.symmetric(
-      vertical: 10.0,
-      horizontal: 25.0,
-    ),
-    decoration: BoxDecoration(
-      color: Color(0xffEEE9EA),
-      border: Border.all(
-        color: Color(0xff5c001e),
-      ),
-      borderRadius: BorderRadius.all(
-        Radius.circular(5.0),
-      )
-    ),
-    child: buildStudentDetails(student, emailController, phoneController),
-  );
-}
-
-Column buildStudentDetails(Student student, TextEditingController emailController, TextEditingController phoneController) {  
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Text(
-            'User Details', 
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 19.0,
-              color: Color(0xff5c001e)
-            ),
-          ),
-        ],
-      ),
-      SizedBox(
-        height: 5,
-        width: 300,
-      ),
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-            height: 5,
-            width: 300,
-          ),
-          Row(
-            children: <Widget>[
-              Text(
-                'Email: ' , 
-                style: TextStyle(
-                  fontSize: 17.0,
-                  color: Color(0xff5c001e)
-                ),
-              ),
-              Expanded(child: 
-                TextField(
-                  controller: emailController,
-                  decoration: InputDecoration(labelText: student.email), 
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 5,
-            width: 300,
-          ),
-          Row(
-            children: <Widget>[
-              Text(
-                'Phone: ', 
-                style: TextStyle(
-                  fontSize: 17.0,
-                  color: Color(0xff5c001e)
-                ),
-              ),
-              Expanded(child: 
-                TextField(
-                  controller: phoneController,
-                  decoration: InputDecoration(labelText: student.phone), 
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 5,
-            width: 300,
-          ),
-          SizedBox(
-            height: 5,
-            width: 300,
-          ),
-          SizedBox(
-            height: 5,
-            width: 300,
-          ),
-        ],
-      ),
-    ],
-  );
-}
-
-BottomNavigationBar buildBottomNav() {
-  return BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Color(0xff5c001e),
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today, color: Colors.white),
-            title: Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications, color: Colors.white),
-            title: Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.folder, color: Colors.white),
-            title: Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.mail, color: Colors.white),
-            title: Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.exit_to_app, color: Colors.white),
-            title: Text(''),
-          ),
-        ],
-  );
 }

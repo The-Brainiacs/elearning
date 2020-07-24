@@ -1,0 +1,56 @@
+{
+  "courses": [
+    {
+      "title": "Software Quality Assurance",
+      "lecturer": "Dr. Ell",
+      "pictPath": "assets/images/c.png",
+      "assignment": "Assignment Testlink",
+      "status": false
+    },
+    {
+      "title": "Software Quality Assurance",
+      "lecturer": "Dr. Ell",
+      "pictPath": "assets/images/c.png",
+      "assignment": "Assignment Testlink",
+      "status": false
+    },
+    {
+      "title": "Software Quality Assurance",
+      "lecturer": "Dr. Ell",
+      "pictPath": "assets/images/c.png",
+      "assignment": "Assignment Testlink",
+      "status": false
+    },
+    {
+      "title": "Software Quality Assurance",
+      "lecturer": "Dr. Ell",
+      "pictPath": "assets/images/c.png",
+      "assignment": "Assignment Testlink",
+      "status": false
+    },
+    {
+      "title": "Software Quality Assurance",
+      "lecturer": "Dr. Ell",
+      "pictPath": "assets/images/c.png",
+      "assignment": "Assignment Testlink",
+      "status": false
+    }
+  ],
+  
+  "students": [
+    {
+      "id": 1,
+      "name": "Muhammad Huzaifah Bin 1",
+      "matric": "A17CS0001",
+      "email": "aiman19@gmail.com1",
+      "phone": "0199090090"
+    },
+    {
+      "id": 2,
+      "name": "Muhammad Huzaifah Bin 2",
+      "matric": "A17CS0002",
+      "email": "aiman19@gmail.com2",
+      "phone": "0199090090"
+    }
+  ]
+}
