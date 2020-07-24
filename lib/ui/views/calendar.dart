@@ -2,7 +2,6 @@ import 'package:elearning_app/core/services/calendar_services.dart';
 import 'package:elearning_app/ui/models/calendar_model.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-//import 'package:firebase/firebase.dart';
 
 class CalendarPage extends StatefulWidget {
   @override
@@ -13,10 +12,10 @@ class _CalendarPageState extends State<CalendarPage> {
   Calendar events;
 
   String datecontroller;
-  TextEditingController descriptioncontroller = TextEditingController();
+  final TextEditingController descriptioncontroller =
+      new TextEditingController();
 
   List<Calendar> list;
-  final dataService = CalendarService();
 
   CalendarController _controller;
   Map<DateTime, List<dynamic>> _events;
@@ -49,8 +48,7 @@ class _CalendarPageState extends State<CalendarPage> {
         future: dataService.displayEvent(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            list = snapshot.data; //List
-            //print(list[0].description),
+            list = snapshot.data;
             return _buildMainScreen();
           }
           return _buildFetchingDataScreen();
@@ -88,16 +86,12 @@ class _CalendarPageState extends State<CalendarPage> {
         label: Text('Add Event'),
         icon: Icon(Icons.check_circle),
         onPressed: () async {
-          //final String date = datecontroller;
-          //final String description = descriptioncontroller.text;
-          // final eve = await dataService.createEvent(
-          //     date: datecontroller, description: descriptioncontroller.text);
-          //setState(() => list.add(eve));
-          final newParty = await dataService.createEvent(
-              party: Calendar(
-                  date: datecontroller,
-                  description: descriptioncontroller.text));
-          setState(() => list.add(newParty));
+          final newCalendar = await dataService.createEvent(
+            calendar: Calendar(
+                date: datecontroller, description: descriptioncontroller.text),
+          );
+
+          setState(() => list.add(newCalendar));
         },
       ),
       bottomNavigationBar: buildBottomNav(),
@@ -231,9 +225,9 @@ class _CalendarPageState extends State<CalendarPage> {
             TextField(
               controller: descriptioncontroller,
             ),
-            events == null
-                ? Container()
-                : Text("Event ${events.description} created successfully")
+            // events == null
+            //     ? Container()
+            //     : Text("Event ${events.description} created successfully")
           ],
         ),
       ],

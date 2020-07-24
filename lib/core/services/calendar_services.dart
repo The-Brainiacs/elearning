@@ -10,7 +10,8 @@ class CalendarService {
   CalendarService._constructor();
   final rest = RestService();
 
-  static const String baseUrl = 'http://192.168.0.111:3000';
+  static const String baseUrl =
+      'https://us-central1-elearning-910d5.cloudfunctions.net/api';
 
   Future<List<Calendar>> displayEvent() async {
     final listJson = await rest.get('calendar');
@@ -20,15 +21,10 @@ class CalendarService {
         .toList();
   }
 
-  // Future<Calendar> createEvent({String date, String description}) async {
-  //   final json = await rest.post('calendar', data: {
-  //     'date': date,
-  //     'description': description,
-  //   });
-  //   return Calendar.fromJson(json);
-  // }
-  Future<Calendar> createEvent({Calendar party}) async {
-    final json = await rest.post('calendar', data: party);
+  Future<Calendar> createEvent({Calendar calendar}) async {
+    final json = await rest.post('calendar', data: calendar);
     return Calendar.fromJson(json);
   }
 }
+
+final dataService = CalendarService();
