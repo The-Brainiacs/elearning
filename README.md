@@ -20,10 +20,3 @@ In Profile, we added Edit Profile feature where students can update their phone 
 
 Lastly, in Messages, we are able to send the messages to intended user by tapping to the add button.
 
-
-
-Notes JEP
-setting> profile > user details
-setting> profile > user details > edit > user details > profile (kena buang tengah once dah kat profile)
-setting> profile > user details > profile (kena buang tengah)
-setting> profile > edit > user details > profile (kena buang)
