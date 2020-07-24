@@ -11,9 +11,13 @@ class RestService {
 
   RestService._constructor();
 
-  static const String baseUrl =
-  // 'http://172.20.10.3:3000';
-      'http://localhost:5001/backend-elearning/us-central1/api';
+ static const String baseUrl =
+      //  'http://localhost:5001/backend-elearning/us-central1/api';
+      //  'https://us-central1-salsabila-exercise4.cloudfunctions.net/api';
+      'https://us-central1-elearning-910d5.cloudfunctions.net/api';
+      // 'http://172.20.10.3:3000';
+
+
 
   Future get(String endpoint) async {
     final response = await http.get('$baseUrl/$endpoint');

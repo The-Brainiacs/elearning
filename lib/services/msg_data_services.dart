@@ -5,8 +5,7 @@ import './rest_service.dart';
 
 
 
-class MsgDataService {
-
+class MsgDataService{
 
   static final MsgDataService _instance = MsgDataService._constructor();
   factory MsgDataService() {
@@ -17,7 +16,11 @@ class MsgDataService {
   final rest = RestService();
 
  static const String baseUrl =
-             'http://localhost:5001/backend-elearning/us-central1/api';
+ 'https://us-central1-elearning-910d5.cloudfunctions.net/api';
+      //  'https://us-central1-salsabila-exercise4.cloudfunctions.net/api';
+      //  'http://localhost:5001/salsabila-exercise4/us-central1/api';
+      // 'http://172.20.10.3:3000';
+
 
 
   Future<List<Msg>> getAllMsgs() async {

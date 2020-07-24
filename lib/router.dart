@@ -1,7 +1,7 @@
 import 'package:elearning_app/ui/views/calendar.dart';
-import 'package:elearning_app/ui/models/message_data.dart';
 import 'package:elearning_app/ui/views/messages.dart';
 import 'package:elearning_app/ui/views/notifications.dart';
+import 'package:elearning_app/ui/views/quote_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:elearning_app/ui/views/login_page.dart';
 import 'package:elearning_app/ui/views/profile.dart';
@@ -25,6 +25,8 @@ class Router {
         return MaterialPageRoute(builder: (_) => CalendarPage());
       case 'messages':
         return MaterialPageRoute(builder: (_) => MessagesPage());
+        // return MaterialPageRoute(builder: (_) => QuoteListScreen());
+
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

@@ -1,8 +1,8 @@
 import 'package:elearning_app/ui/shared/dashboard_data.dart';
 import 'package:elearning_app/ui/views/calendar.dart';
-import 'package:elearning_app/ui/models/message_data.dart';
 import 'package:elearning_app/ui/views/messages.dart';
 import 'package:elearning_app/ui/views/notifications.dart';
+import 'package:elearning_app/ui/views/quote_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:elearning_app/ui/views/profile.dart';
 import 'package:elearning_app/ui/views/login_page.dart';
@@ -102,6 +102,8 @@ class _BodyLayoutState extends State<BodyLayout> {
         leading: Icon(Icons.message, color: Color(0xff5c001e)),
         onTap: () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => MessagesPage())),
+            // context, MaterialPageRoute(builder: (context) => QuoteListScreen())),
+
       ),
       ListTile(
         title: Text('Notifications'),
