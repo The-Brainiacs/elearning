@@ -182,7 +182,7 @@ class _ProfilePageState extends State<ProfilePage> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => DashboardPage(mockDataDashboard)),
+                    builder: (context) => DashboardPage()),
               ),
             ),
             InkWell(
@@ -196,7 +196,7 @@ class _ProfilePageState extends State<ProfilePage> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => DashboardPage(mockDataDashboard)),
+                    builder: (context) => DashboardPage()),
               ),
             ),
           ],
