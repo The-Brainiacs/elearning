@@ -1,12 +1,11 @@
 import 'package:elearning_app/ui/models/student.dart';
 import 'package:flutter/material.dart';
 import 'package:elearning_app/ui/views/profile.dart';
-import 'package:elearning_app/ui/shared/dashboard_data.dart';
-
+import 'package:elearning_app/ui/views/login_page.dart';
+import 'package:elearning_app/ui/views/settings.dart';
+import 'package:elearning_app/services/profile_data_service.dart';
 
 class UserDetailsPage extends StatefulWidget {
-  final Student student;
-  UserDetailsPage(this.student);
   @override
   State<StatefulWidget> createState() {
     return _UserDetailsPageState();
@@ -14,10 +13,68 @@ class UserDetailsPage extends StatefulWidget {
 }
 
 class _UserDetailsPageState extends State<UserDetailsPage> {
+  List<Student> _student;
+
+  final dataService = StudentDataService();
+
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder<List<Student>>(
+        future: dataService.getAllStudent(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            _student = snapshot.data;
+            return _buildMainScreen();
+          }
+          return _buildFetchingDataScreen();
+        });
+  }
 
-    final profileInfoContainer = Container(
+  Widget _buildMainScreen() {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('User Details'),
+      ),
+      body: SafeArea(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              buildProfileInfoContainer(),
+              buildDetailsContainer(),
+              Container(
+                width: 360,
+                padding: EdgeInsets.all(10.0),
+                margin: EdgeInsets.symmetric(
+                  vertical: 5.0,
+                  horizontal: 20.0,
+                ),
+                child: Align(
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        '*Changes in Student\'s Name and Matric Number must be made by School\'s Admin',
+                        style: TextStyle(
+                          fontSize: 12.0,
+                          color: Color(0xff5c001e),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                        width: 300,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ]),
+      ),
+      bottomNavigationBar: buildBottomNav(),
+    );
+  }
+
+  Widget buildProfileInfoContainer() {
+    return Container(
       width: 360,
       padding: EdgeInsets.all(10.0),
       margin: EdgeInsets.symmetric(
@@ -32,7 +89,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
               backgroundImage: AssetImage('assets/images/profile_picture.jpg'),
             ),
             Text(
-              'Muhammad Aiman Bin Azwak',
+              _student[0].name,
               style: TextStyle(
                 fontSize: 20.0,
                 color: Color(0xff5c001e),
@@ -40,23 +97,31 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
               ),
             ),
             Text(
-              'A17CS0000',
+              _student[0].matric,
               style: TextStyle(
                 fontSize: 17.0,
                 color: Color(0xff5c001e),
               ),
             ),
             FlatButton(
-              child: Text('Profile'),
-              color: Color(0xff5c001e),
-              textColor: Colors.white,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProfilePage(mockDataDashboard)), 
-                );
-              }
-            ),
+                child: Text('Back to Settings'),
+                color: Color(0xff5c001e),
+                textColor: Colors.white,
+                onPressed: 
+                // () {
+                //   Navigator.push(
+                //     context,
+                //     MaterialPageRoute(builder: (context) => ProfilePage()),
+                //   );
+
+                  () {Navigator.pushReplacement(
+                    context,
+                    // MaterialPageRoute(builder: (context) => LoginPage()),
+                    MaterialPageRoute(builder: (context) => SettingsPage())
+                  );
+
+                  // Navigator.popUntil(context, ModalRoute.withName('/profile')); //TODO
+                }),
             SizedBox(
               height: 10,
               width: 300,
@@ -68,170 +133,136 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
         ),
       ),
     );
+  }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('User Details'),
+  Container buildDetailsContainer() {
+    return Container(
+      // Details
+      width: 360,
+      padding: EdgeInsets.all(10.0),
+      margin: EdgeInsets.symmetric(
+        vertical: 10.0,
+        horizontal: 25.0,
       ),
-      body: SafeArea(
+      decoration: BoxDecoration(
+          color: Color(0xffEEE9EA),
+          border: Border.all(
+            color: Color(0xff5c001e),
+          ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(5.0),
+          )),
+      child: buildStudentDetails(),
+    );
+  }
+
+  Column buildStudentDetails() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              'User Details',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 19.0,
+                  color: Color(0xff5c001e)),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 5,
+          width: 300,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              height: 5,
+              width: 300,
+            ),
+            Row(
+              children: <Widget>[
+                Text(
+                  'Email: ' + _student[0].email,
+                  style: TextStyle(fontSize: 17.0, color: Color(0xff5c001e)),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 5,
+              width: 300,
+            ),
+            Row(
+              children: <Widget>[
+                Text(
+                  'Phone: ' + _student[0].phone,
+                  style: TextStyle(fontSize: 17.0, color: Color(0xff5c001e)),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 5,
+              width: 300,
+            ),
+            SizedBox(
+              height: 5,
+              width: 300,
+            ),
+            SizedBox(
+              height: 5,
+              width: 300,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  BottomNavigationBar buildBottomNav() {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: Color(0xff5c001e),
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.calendar_today, color: Colors.white),
+          title: Text(''),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.notifications, color: Colors.white),
+          title: Text(''),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.folder, color: Colors.white),
+          title: Text(''),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.mail, color: Colors.white),
+          title: Text(''),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.exit_to_app, color: Colors.white),
+          title: Text(''),
+        ),
+      ],
+    );
+  }
+
+  // The fetching screen (loading)
+  Scaffold _buildFetchingDataScreen() {
+    return Scaffold(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            profileInfoContainer, 
-            buildDetailsContainer(widget.student.email, widget.student.phone),
-            Container(
-              width: 360,
-              padding: EdgeInsets.all(10.0),
-              margin: EdgeInsets.symmetric(
-                vertical: 5.0,
-                horizontal: 20.0,
-              ),
-              child: Align(
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      '*Changes in Student\'s Name and Matric Number must be made by School\'s Admin',
-                      style: TextStyle(
-                        fontSize: 12.0,
-                        color: Color(0xff5c001e),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                      width: 300,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ]
+            CircularProgressIndicator(),
+            SizedBox(height: 50),
+            Text('Fetching quotes... Please wait'),
+          ],
         ),
-        
       ),
-      bottomNavigationBar: buildBottomNav(),
     );
   }
-}
-
-Container buildDetailsContainer(String email, String phone) {
-  return Container( // Details
-    width: 360,
-    padding: EdgeInsets.all(10.0),
-    margin: EdgeInsets.symmetric(
-      vertical: 10.0,
-      horizontal: 25.0,
-    ),
-    decoration: BoxDecoration(
-      color: Color(0xffEEE9EA),
-      border: Border.all(
-        color: Color(0xff5c001e),
-      ),
-      borderRadius: BorderRadius.all(
-        Radius.circular(5.0),
-      )
-    ),
-    child: buildStudentDetails(email, phone),
-  );
-}
-
-Column buildStudentDetails(String email, String phone) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Text(
-            'User Details', 
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 19.0,
-              color: Color(0xff5c001e)
-            ),
-          ),
-        ],
-      ),
-      SizedBox(
-        height: 5,
-        width: 300,
-      ),
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-            height: 5,
-            width: 300,
-          ),
-          Row(
-            children: <Widget>[
-              Text(
-                'Email: ' + email, 
-                style: TextStyle(
-                  fontSize: 17.0,
-                  color: Color(0xff5c001e)
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 5,
-            width: 300,
-          ),
-          Row(
-            children: <Widget>[
-              Text(
-                'Phone: ' + phone, 
-                style: TextStyle(
-                  fontSize: 17.0,
-                  color: Color(0xff5c001e)
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 5,
-            width: 300,
-          ),
-          SizedBox(
-            height: 5,
-            width: 300,
-          ),
-          SizedBox(
-            height: 5,
-            width: 300,
-          ),
-        ],
-      ),
-    ],
-  );
-}
-
-BottomNavigationBar buildBottomNav() {
-  return BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Color(0xff5c001e),
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today, color: Colors.white),
-            title: Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications, color: Colors.white),
-            title: Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.folder, color: Colors.white),
-            title: Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.mail, color: Colors.white),
-            title: Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.exit_to_app, color: Colors.white),
-            title: Text(''),
-          ),
-        ],
-  );
 }
