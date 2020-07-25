@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:elearning_app/ui/views/login_page.dart';
 import 'package:flutter/material.dart';
 

@@ -1,6 +1,5 @@
 
 import 'package:elearning_app/ui/views/splash_screen.dart';
-
 import 'package:flutter/material.dart';
 
 void main() => runApp(App());

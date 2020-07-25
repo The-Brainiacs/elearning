@@ -169,7 +169,6 @@ class _MessagesPageState extends State<MessagesPage> {
           children: <Widget>[
             CircularProgressIndicator(),
             SizedBox(height: 50),
-            Text('Fetching quotes... Please wait'),
           ],
         ),
       ),
