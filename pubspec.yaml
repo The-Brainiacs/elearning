@@ -22,7 +22,7 @@ dependencies:
   provider: ^4.0.4
   http: ^0.12.2
 
-  firebase_messaging: ^4.0.0+3
+  
   percent_indicator: ^2.1.1
   table_calendar: ^2.2.3 
   firebase: ^7.3.0
