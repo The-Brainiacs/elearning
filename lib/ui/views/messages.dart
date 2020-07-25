@@ -47,29 +47,32 @@ class _MessagesPageState extends State<MessagesPage> {
                   color: Colors.red),
                 key: Key(_msgs[index].name),
                 child: Container(
+                  
                   padding: EdgeInsets.fromLTRB(20, 15, 0, 0),
                   height: 85,
                   color: Colors.red[50],
                   child: Center(
+                    
                     child: Row(
+                      
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        
+                        Icon(Icons.message, size: 60),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              '${_msgs[index].name}',
+                              '   ${_msgs[index].name}',
                               
                               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              '${_msgs[index].textmsg}',
+                              '   ${_msgs[index].textmsg}',
                              
                               style: TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
                             ),
                            Text(
-                              '------------------------------------------------------------------------',
+                              '-------------------------------------------------------------',
                                style: TextStyle(fontSize: 20),
                             ),
                           ],
@@ -175,7 +178,7 @@ class _MessagesPageState extends State<MessagesPage> {
                           onPressed: () async {
                             final newMsg = await dataService.createMsg(
                               msg: Msg(
-                                  id: " ",
+                                  id: null,
                                   name: _controller.text,
                                   textmsg: _controller2.text),
                             );

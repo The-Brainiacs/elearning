@@ -1,14 +1,15 @@
 
 @baseUrl = https://us-central1-elearning-910d5.cloudfunctions.net/api
 
+# @baseUrl =  http://172.20.10.3:3000
 
 ### Get the list of students
 GET {{baseUrl}}/students
 
-###  Getting a student for a given id
+###  Getting a student for a given idg
 GET {{baseUrl}}/students/KKQ8GpJQQhbWRwbpYql6
 
-###  Edit profile
+###  Edit profileg
 PATCH {{baseUrl}}/students/KKQ8GpJQQhbWRwbpYql6
 Content-Type: application/json
 
@@ -21,45 +22,19 @@ Content-Type: application/json
 ### Get the list of msgs
 GET {{baseUrl}}/msgs
 
-###  Getting a msg for a given id
-GET {{baseUrl}}/msgs/1
 
 ###  Add a new msg
 POST {{baseUrl}}/msgs
 Content-Type: application/json
 
 {
-    "name": "Bella",
-    "textmsg" : "hello bell"
+    "name": "Maisara",
+    "textmsg" : "hello maisara"
 }
 
-### Update a msg partly
-PATCH {{baseUrl}}/msgs/7hafVnkozwXR6u2world
-Content-Type: application/json
-
-{
-        "textmsg" : "hello belllo"
-}
-
-###
-PATCH {{baseUrl}}/msgs/fi4cmMIf9ACxcH8kl800
-Content-Type: application/json
-
-{
-        "textmsg" : "heyy bella"
-}
-
-### Replace an existing msg entirely
-PUT {{baseUrl}}/msgs/7hafVnkozwXR6u2world
-Content-Type: application/json
-
-{
-    "name": "Icha",
-    "textmsg" : "ichallll",
-}
 
 ### Delete a msg
-DELETE {{baseUrl}}/msgs/r8YlBetUqKDcZKeoek1u
+DELETE {{baseUrl}}/msgs/eLhCAdlQUleSIrfnPHKR
 
 ### Get the calendar event
 GET {{baseUrl}}/calendar

@@ -36,7 +36,6 @@
       "status": false
     }
   ],
-  
   "students": [
     {
       "id": 1,
@@ -49,8 +48,20 @@
       "id": 2,
       "name": "Muhammad Huzaifah Bin 2",
       "matric": "A17CS0002",
-      "email": "aiman19@gmail.com2",
-      "phone": "0199090090"
+      "email": "abu@gmail",
+      "phone": "01111111"
+    }
+  ],
+  "msgs": [
+    {
+      "id": 1,
+      "name": "Afiq",
+      "textmsg": "Meeting at 10"
+    },
+    {
+      "id": 2,
+      "name": "Maisarah",
+      "textmsg": "Hello sara."
     }
   ]
 }
