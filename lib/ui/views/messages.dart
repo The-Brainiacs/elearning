@@ -38,25 +38,60 @@ class _MessagesPageState extends State<MessagesPage> {
       appBar: AppBar(
         title: Text('Messages'),
       ),
-      body: ListView.separated(
-        itemCount: _msgs.length,
-        separatorBuilder: (context, index) => Divider(
-          color: Colors.blueGrey,
-        ),
-        itemBuilder: (context, index) {
-          final _msg = _msgs[index];
-          return ListTile(
-            title: Text(_msg.name,
-                textAlign: TextAlign.justify, style: TextStyle(fontSize: 16)),
-            subtitle: Text(_msg.textmsg,
-                textAlign: TextAlign.justify, style: TextStyle(fontSize: 14)),
-            onLongPress: () async {
-              await dataService.deleteMsg(
-                  id: _msgs[index].id); // Delete todo at the database
-              setState(() => _msgs.removeAt(index)); // Update UI
-            },
-          );
-        },
+      body: Container(
+        child: ListView.builder(
+            itemCount: _msgs.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Dismissible(
+                background: Container(
+                  color: Colors.red),
+                key: Key(_msgs[index].name),
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(20, 15, 0, 0),
+                  height: 85,
+                  color: Colors.red[50],
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              '${_msgs[index].name}',
+                              
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              '${_msgs[index].textmsg}',
+                             
+                              style: TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
+                            ),
+                           Text(
+                              '------------------------------------------------------------------------',
+                               style: TextStyle(fontSize: 20),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                onDismissed: (direction) async {
+                 
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                      content:
+                          Text("Messages from ${_msgs[index].name} deleted")));
+                 
+                  await dataService.deleteMsg(
+                      id: _msgs[index].id); // Delete msgs at the database
+                  setState(() {
+                    _msgs.removeAt(index);
+                  });
+                },
+              );
+            }),
       ),
 
       floatingActionButton: SafeArea(
@@ -64,6 +99,7 @@ class _MessagesPageState extends State<MessagesPage> {
         child: FloatingActionButton.extended(
           label: const Text('Add new message'),
           heroTag: null,
+          backgroundColor: Color(0xff5c001e),
           onPressed: () {
             showDialog(
               context: context,
@@ -135,6 +171,7 @@ class _MessagesPageState extends State<MessagesPage> {
                         FloatingActionButton.extended(
                           label: const Text('Send'),
                           heroTag: null,
+                          backgroundColor: Color(0xff5c001e),
                           onPressed: () async {
                             final newMsg = await dataService.createMsg(
                               msg: Msg(
@@ -144,6 +181,7 @@ class _MessagesPageState extends State<MessagesPage> {
                             );
 
                             setState(() => _msgs.add(newMsg)); // Update UI
+                            
                           },
                         ),
                       ],
@@ -155,7 +193,6 @@ class _MessagesPageState extends State<MessagesPage> {
           },
         ),
       ),
-
 
       bottomNavigationBar: buildBottomNav(),
     );
