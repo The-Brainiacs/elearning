@@ -14,6 +14,10 @@ First Prototype: https://youtu.be/ubjIQ_ydbKo
 Second Prototype: https://youtu.be/mgUwU3bMH0A
 Last Prototype: https://youtu.be/BRTxcmLPozo
 
+# Github URL
+Front-end : https://github.com/The-Brainiacs/elearning.git
+Back-end : https://github.com/The-Brainiacs/elearningBackend.git
+
 # About 
 Students have been using E-Learning as a platform to download notes, take quizzes, submit assignments. However, there are a lot of features in E-Learning that the students are not aware of. Currently, the E-Learning only available in web-based version and not mobile-based version. The notification feature in E-Learning is not noticeable as the students could only view when the students open the E-Learning. The group chat function is also not utilised by the students and the students need to create groups using WhatsApp or Telegram. The calendar that marks submissions or other important dates is not noticeable.
 
